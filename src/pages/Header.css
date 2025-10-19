@@ -1,0 +1,209 @@
+/* src/pages/Header.css */
+
+.header {
+  background-color: #1e3a8a; /* Updated to match Infosphere */
+  color: white;
+  padding: 0 16px;
+  min-height: 70px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  min-height: inherit;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.logo-link {
+  display: inline-block;
+}
+
+.logo {
+  display: block;
+  height: 40px;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+.desktop-ise-logo {
+  display: none;
+}
+
+.nav-ise-logo {
+  display: block;
+  margin: 24px auto 16px;
+  height: 50px;
+}
+
+/* Navigation - Mobile First */
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #1e3a8a;
+  transition: left 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  padding-top: 80px;
+  z-index: 999;
+}
+
+.nav.nav-open {
+  left: 0;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-item {
+  width: 100%;
+  text-align: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding: 12px 20px;
+  display: block;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #60a5fa;
+}
+
+.nav-link.active {
+  font-weight: 600;
+  color: #60a5fa;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background-color: #60a5fa;
+  border-radius: 1px;
+}
+
+/* Hamburger Button */
+.nav-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1001;
+  margin-left: auto;
+}
+
+.nav-toggle svg {
+  display: block;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .header {
+    min-height: 80px;
+    padding: 0 32px;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .desktop-ise-logo {
+    display: block;
+    order: 3;
+  }
+
+  .nav-ise-logo {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    flex-direction: row;
+    background-color: transparent;
+    width: auto;
+    min-height: auto;
+    left: auto;
+    padding-top: 0;
+    transition: none;
+    margin: 0 auto;
+    order: 2;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #60a5fa;
+    background-color: transparent;
+  }
+
+  .nav-link.active {
+    color: #60a5fa;
+  }
+
+  .nav-link.active::after {
+    bottom: -4px;
+    width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 0 40px;
+  }
+
+  .logo {
+    height: 55px;
+  }
+
+  .nav-list {
+    gap: 40px;
+  }
+}
