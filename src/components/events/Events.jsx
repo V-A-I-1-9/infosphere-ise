@@ -1,208 +1,99 @@
-import { useEventsData } from "../../hooks/useEventData";
-import "./Event.css";
+import React from 'react';
+import { useEventsData } from '../../hooks/useEventData';
+import { Timeline } from '@/components/ui/timeline';
+import EventTimelineCard from './EventTimelineCard';
+import Spinner from '../../pages/Spinner';
+import { motion } from 'framer-motion';
+
+// Helper function to format the date for the timeline title
+function formatEventDate(date) {
+  if (!date || !(date instanceof Date)) return "Date TBD";
+  return new Intl.DateTimeFormat('en-IN', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+}
+
+// Helper function to format the time for the timeline title
+function formatEventTime(date) {
+  if (!date || !(date instanceof Date)) return "";
+  return new Intl.DateTimeFormat('en-IN', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  }).format(date);
+}
+
 
 function EventsPage() {
-  const { isLoading, isError, error, upcoming, ongoing, completed, featured } =
+  const { isLoading, isError, error, upcoming, ongoing, completed } =
     useEventsData();
 
-  // Loading state
   if (isLoading) {
-    return (
-      <div className="loading-container">
-        <p>Loading events...</p>
-      </div>
-    );
+    return <Spinner />;
   }
 
-  // Error state
   if (isError) {
     return (
-      <div className="error-container">
-        <h2>Error Loading Events</h2>
-        <p>{error?.message || "An unexpected error occurred"}</p>
+      <div className="container mx-auto py-24 text-center">
+        <h2 className="text-3xl font-bold text-red-600">Error Loading Events</h2>
+        <p className="text-slate-600 mt-4">
+          {error?.message || "An unexpected error occurred. Please try again later."}
+        </p>
       </div>
     );
   }
 
+  const allEvents = [...ongoing, ...upcoming, ...completed]
+    .sort((a, b) => b.start.getTime() - a.start.getTime());
+
+  const timelineData = allEvents.map(event => ({
+    title: (
+      <div className="flex flex-col">
+        {/* We make the date bold and larger */}
+        <span className="text-2xl font-bold text-slate-900">
+          {formatEventDate(event.start)}
+        </span>
+        {/* And the time slightly smaller and lighter */}
+        <span className="text-lg text-slate-600">
+          {formatEventTime(event.start)}
+        </span>
+      </div>
+    ),
+    content: (
+      <EventTimelineCard event={event} />
+    ),
+  }));
+
   return (
-    <div className="events-page">
-      <h1>Events Calendar</h1>
+    <div className="container mx-auto px-4 py-12 md:py-24">
 
-      {/* Featured Events */}
-      {featured.length > 0 && (
-        <section className="featured-section">
-          <h2>Featured Events</h2>
-          <div className="featured-grid">
-            {featured.map(function renderFeaturedEvent(event) {
-              return (
-                <div key={event.event_id} className="featured-card">
-                  {event.poster_url && (
-                    <img
-                      src={event.poster_url}
-                      alt={event.title}
-                      loading="lazy"
-                    />
-                  )}
-                  <div className="card-content">
-                    <span className="category-badge">{event.category}</span>
-                    <h3>{event.title}</h3>
-                    {event.sub_category && (
-                      <p className="sub-category">{event.sub_category}</p>
-                    )}
-                    <p className="event-date">
-                      {event.start &&
-                        event.start.toLocaleDateString("en-IN", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                    </p>
-                    <p className="venue">📍 {event.venue}</p>
-                    <p className="description">{event.description}</p>
-                    {event.registration_link && (
-                      <a
-                        href={event.registration_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="register-btn"
-                      >
-                        Register Now
-                      </a>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
+      <motion.h1
+        className="text-5xl md:text-7xl font-bold text-slate-900 mb-4 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Event{" "}
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
+          Timeline
+        </span>
+      </motion.h1>
+      <motion.p
+        className="text-lg text-slate-600 mb-0 text-center max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        Check out our upcoming events and join us for fun, learning, and networking!.
+      </motion.p>
 
-      {/* Upcoming Events */}
-      <section className="upcoming-section">
-        <h2>Upcoming Events ({upcoming.length})</h2>
-        <div className="events-grid">
-          {upcoming.map(function renderUpcomingEvent(event) {
-            return (
-              <div key={event.event_id} className="event-card">
-                {event.poster_url && (
-                  <img
-                    src={event.poster_url}
-                    alt={event.title}
-                    loading="lazy"
-                  />
-                )}
-                <div className="card-content">
-                  <div className="card-header">
-                    <span
-                      className={`category-badge ${event.category.toLowerCase()}`}
-                    >
-                      {event.category}
-                    </span>
-                    <span className="status-badge upcoming">Upcoming</span>
-                  </div>
-                  <h3>{event.title}</h3>
-                  {event.sub_category && (
-                    <p className="sub-category">{event.sub_category}</p>
-                  )}
-                  <div className="event-meta">
-                    <p className="event-date">
-                      🗓️{" "}
-                      {event.start &&
-                        event.start.toLocaleDateString("en-IN", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })}
-                    </p>
-                    <p className="event-time">
-                      ⏰{" "}
-                      {event.start &&
-                        event.start.toLocaleTimeString("en-IN", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                    </p>
-                    <p className="venue">📍 {event.venue}</p>
-                  </div>
-                  <p className="description">{event.description}</p>
-                  {event.registration_link && (
-                    <a
-                      href={event.registration_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="register-btn"
-                    >
-                      Register
-                    </a>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      <section>
+        {/* --- FIX: Removed the 'wrapperClassName' prop --- */}
+        <Timeline data={timelineData} />
       </section>
 
-      {/* Ongoing Events */}
-      {ongoing.length > 0 && (
-        <section className="ongoing-section">
-          <h2>Ongoing Events ({ongoing.length})</h2>
-          <div className="events-grid">
-            {ongoing.map(function renderOngoingEvent(event) {
-              return (
-                <div key={event.event_id} className="event-card">
-                  {event.poster_url && (
-                    <img
-                      src={event.poster_url}
-                      alt={event.title}
-                      loading="lazy"
-                    />
-                  )}
-                  <div className="card-content">
-                    <div className="card-header">
-                      <span
-                        className={`category-badge ${event.category.toLowerCase()}`}
-                      >
-                        {event.category}
-                      </span>
-                      <span className="status-badge ongoing">Live Now</span>
-                    </div>
-                    <h3>{event.title}</h3>
-                    <p className="venue">📍 {event.venue}</p>
-                    <p className="description">{event.description}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {/* Completed Events */}
-      {completed.length > 0 && (
-        <section className="completed-section">
-          <h2>Past Events ({completed.length})</h2>
-          <div className="events-grid compact">
-            {completed.slice(0, 6).map(function renderCompletedEvent(event) {
-              return (
-                <div key={event.event_id} className="event-card compact">
-                  <h4>{event.title}</h4>
-                  <p className="category">{event.category}</p>
-                  <p className="date">
-                    {event.start &&
-                      event.start.toLocaleDateString("en-IN", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
     </div>
   );
 }

@@ -1,155 +1,38 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+/* src/pages/Header.jsx */
 
-import "./Header.css";
+import { Link } from 'react-router-dom';
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import IseLogo from '../assets/ISE.png';
+import MmitLogo from '../assets/mmit.png';
+import {
+  Home,
+  Trophy,
+  Wrench,
+  VenetianMask,
+  CalendarDays,
+} from 'lucide-react';
 
-const HamburgerIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="28"
-    height="28"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="3" y1="12" x2="21" y2="12"></line>
-    <line x1="3" y1="6" x2="21" y2="6"></line>
-    <line x1="3" y1="18" x2="21" y2="18"></line>
-  </svg>
-);
-
-const CloseIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="28"
-    height="28"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="18" y1="6" x2="6" y2="18"></line>
-    <line x1="6" y1="6" x2="18" y2="18"></line>
-  </svg>
-);
+const navItems = [
+  // ... (same nav items)
+  { name: 'Home', url: '/', icon: Home },
+  { name: 'Sports', url: '/sports', icon: Trophy },
+  { name: 'Technical', url: '/technical', icon: Wrench },
+  { name: 'Cultural', url: '/cultural', icon: VenetianMask },
+  { name: 'Events', url: '/events', icon: CalendarDays },
+];
 
 function Header() {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
-  };
-
-  // Close nav when a link is clicked (for mobile)
-  const handleLinkClick = () => {
-    if (isNavOpen) {
-      setIsNavOpen(false);
-    }
-  };
-
   return (
-    <header className="header">
-      <div className="header-content">
-        {/* Left logo - always visible */}
-        <NavLink to="/" className="logo-link" onClick={handleLinkClick}>
-          <img
-            src="/assets/MIT.webp"
-            alt="MIT Logo"
-            className="logo mit-logo"
-          />
-        </NavLink>
-
-        {/* Navigation */}
-        <nav className={`nav ${isNavOpen ? "nav-open" : ""}`}>
-          <ul className="nav-list">
-            <li className="nav-item">
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                end
-                onClick={handleLinkClick}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/events"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                onClick={handleLinkClick}
-              >
-                Events
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/cultural"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                onClick={handleLinkClick}
-              >
-                Cultural
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink
-                to="/sports"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                onClick={handleLinkClick}
-              >
-                Sports
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/technical"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                onClick={handleLinkClick}
-              >
-                Technical
-              </NavLink>
-            </li>
-          </ul>
-          {/* ISE Logo inside mobile nav for better space management */}
-          <img
-            src="/assets/ISE.webp"
-            alt="ISE Logo"
-            className="logo ise-logo nav-ise-logo"
-          />
-        </nav>
-
-        {/* Right logo - visible on desktop, hidden in standard flow on mobile */}
-        <img
-          src="/assets/ISE.webp"
-          alt="ISE Logo"
-          className="logo ise-logo desktop-ise-logo"
-        />
-
-        {/* Hamburger Menu Button */}
-        <button
-          className="nav-toggle"
-          onClick={toggleNav}
-          aria-label="Toggle navigation"
-          aria-expanded={isNavOpen}
-        >
-          {isNavOpen ? <CloseIcon /> : <HamburgerIcon />}
-        </button>
+    <header className="relative z-40 h-20 w-full">
+      <div className="absolute top-0 left-0 p-4 sm:p-6">
+        <Link to="/" className="flex items-center gap-3">
+          <img src={MmitLogo} alt="MMIT Logo" className="h-10 w-auto sm:h-12" />
+          {/* --- THIS IS THE CHANGE --- */}
+          <div className="h-8 w-px bg-slate-300"></div> {/* Was bg-slate-700 */}
+          <img src={IseLogo} alt="ISE Dept Logo" className="h-10 w-auto sm:h-12" />
+        </Link>
       </div>
+      <NavBar items={navItems} />
     </header>
   );
 }
