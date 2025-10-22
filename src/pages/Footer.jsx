@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, Github, Mail, Phone, MapPin } from 'lucide-react';
-import IseLogo from '../assets/ISE.png'; // Using your existing logo
+import React from "react";
+import { Link } from "react-router-dom";
+import { Instagram, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react";
+import IseLogo from "../assets/ISE.png"; // Using your existing logo
 
 function Footer() {
   return (
@@ -9,20 +9,18 @@ function Footer() {
     // 1. border-t: A subtle top line for separation.
     // 2. bg-white/70: A semi-transparent white background.
     // 3. backdrop-blur-sm: The "frosted glass" effect that blurs the gradient behind it.
-    <footer className="w-full border-t border-slate-300/50 bg-white/70 backdrop-blur-sm mt-24">
-      
+    <footer className="w-full mt-24 border-t border-slate-300/50 bg-white/70 backdrop-blur-sm">
       {/* Main content grid */}
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6 py-12">
-        
+      <div className="container grid grid-cols-1 gap-10 px-6 py-12 mx-auto md:grid-cols-4">
         {/* Column 1: Identity */}
         <div className="flex flex-col items-center md:items-start">
           <div className="flex items-center gap-2 mb-3">
-            <img src={IseLogo} alt="ISE Dept Logo" className="h-10 w-auto" />
-            <span className="font-bold text-lg text-brand-dark">
+            <img src={IseLogo} alt="ISE Dept Logo" className="w-auto h-10" />
+            <span className="text-lg font-bold text-brand-dark">
               Infosphere ISE
             </span>
           </div>
-          <p className="text-sm text-slate-600 text-center md:text-left">
+          <p className="text-sm text-center text-slate-600 md:text-left">
             Information Science & Engineering
             <br />
             Maharaja Institute of Technology, Mysuru
@@ -31,29 +29,68 @@ function Footer() {
 
         {/* Column 2: Quick Links */}
         <div>
-          <h4 className="font-semibold text-slate-800 mb-3 text-center md:text-left">Quick Links</h4>
-          <ul className="space-y-2 text-sm text-slate-600 flex flex-col items-center md:items-start">
-            <li><Link to="/" className="hover:text-brand-dark transition-colors">Home</Link></li>
-            <li><Link to="/sports" className="hover:text-brand-dark transition-colors">Sports</Link></li>
-            <li><Link to="/technical" className="hover:text-brand-dark transition-colors">Technical</Link></li>
-            <li><Link to="/cultural" className="hover:text-brand-dark transition-colors">Cultural</Link></li>
-            <li><Link to="/events" className="hover:text-brand-dark transition-colors">Events</Link></li>
+          <h4 className="mb-3 font-semibold text-center text-slate-800 md:text-left">
+            Quick Links
+          </h4>
+          <ul className="flex flex-col items-center space-y-2 text-sm text-slate-600 md:items-start">
+            <li>
+              <Link to="/" className="transition-colors hover:text-brand-dark">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/sports"
+                className="transition-colors hover:text-brand-dark"
+              >
+                Sports
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/technical"
+                className="transition-colors hover:text-brand-dark"
+              >
+                Technical
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/cultural"
+                className="transition-colors hover:text-brand-dark"
+              >
+                Cultural
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/events"
+                className="transition-colors hover:text-brand-dark"
+              >
+                Events
+              </Link>
+            </li>
           </ul>
         </div>
 
         {/* Column 3: Contact */}
         <div>
-          <h4 className="font-semibold text-slate-800 mb-3 text-center md:text-left">Contact Us</h4>
-          <ul className="space-y-2 text-sm text-slate-600 flex flex-col items-center md:items-start">
+          <h4 className="mb-3 font-semibold text-center text-slate-800 md:text-left">
+            Contact Us
+          </h4>
+          <ul className="flex flex-col items-center space-y-2 text-sm text-slate-600 md:items-start">
             <li className="flex items-center gap-2">
               <Mail size={16} />
-              <a href="mailto:infosphere@mmit.edu.in" className="hover:text-brand-dark transition-colors">
-                infosphere@mmit.edu.in
+              <a
+                href="mailto:hodise@mitmysore.in"
+                className="transition-colors hover:text-brand-dark"
+              >
+                Contact us
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone size={16} />
-              <span>+91 12345 67890</span>
+              <a href="tel:+91 94808 49443">Contact us</a>
             </li>
             <li className="flex items-center gap-2">
               <MapPin size={16} />
@@ -61,28 +98,12 @@ function Footer() {
             </li>
           </ul>
         </div>
-
-        {/* Column 4: Socials */}
-        <div>
-          <h4 className="font-semibold text-slate-800 mb-3 text-center md:text-left">Follow Us</h4>
-          <div className="flex justify-center md:justify-start space-x-5">
-            <a href="#" aria-label="Instagram" className="text-slate-500 hover:text-brand-dark transition-colors">
-              <Instagram size={24} />
-            </a>
-            <a href="#" aria-label="LinkedIn" className="text-slate-500 hover:text-brand-dark transition-colors">
-              <Linkedin size={24} />
-            </a>
-            <a href="#" aria-label="GitHub" className="text-slate-500 hover:text-brand-dark transition-colors">
-              <Github size={24} />
-            </a>
-          </div>
-        </div>
       </div>
 
       {/* Bottom Copyright Bar */}
-      <div className="border-t border-slate-300/50 py-4">
-        <p className="text-center text-xs text-slate-500">
-          © {new Date().getFullYear()} Infosphere ISE Club. All rights reserved.
+      <div className="py-4 border-t border-slate-300/50">
+        <p className="text-xs text-center text-slate-500">
+          © 2025 Infosphere ISE Club. All rights reserved.
         </p>
       </div>
     </footer>
