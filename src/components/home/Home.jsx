@@ -172,8 +172,8 @@ function Home() {
             The driving force behind Infosphere, from our guiding faculty to our dedicated student leaders.
           </p>
 
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-semibold text-slate-800 mb-12">
+          <div className="mb-8 md:mb-20">
+            <h3 className="text-3xl md:text-4xl font-semibold text-slate-800 mb-6 md:mb-12">
               Faculty Coordinators
             </h3>
             <AnimatedTestimonials testimonials={facultyCoordinators} />
@@ -203,7 +203,8 @@ function Home() {
             
             {/* --- CARD 1: SPORTS --- */}
             <CardContainer className="inter-var">
-              <CardBody className="bg-slate-50 relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] border-slate-200 w-auto h-auto rounded-xl p-6 border">
+              {/* --- THIS IS THE CHANGE --- */}
+              <CardBody className="relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] w-auto h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50">
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"
@@ -213,7 +214,7 @@ function Home() {
                 <CardItem
                   as="p"
                   translateZ="60"
-                  className="text-slate-600 text-sm max-w-sm mt-2"
+                  className="text-slate-700 text-sm max-w-sm mt-2"
                 >
                   Play. Compete. Win. From the cricket pitch to the basketball court.
                 </CardItem>
@@ -229,7 +230,7 @@ function Home() {
                 <div className="flex justify-end items-center mt-10">
                   <CardItem
                     translateZ={20}
-                    as={Link} // This is why we need the import
+                    as={Link}
                     to="/sports"
                     className="px-4 py-2 rounded-xl bg-brand-dark text-white text-xs font-bold"
                   >
@@ -241,7 +242,8 @@ function Home() {
 
             {/* --- CARD 2: TECHNICAL --- */}
             <CardContainer className="inter-var">
-              <CardBody className="bg-slate-50 relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] border-slate-200 w-auto h-auto rounded-xl p-6 border">
+              {/* --- THIS IS THE CHANGE --- */}
+              <CardBody className="relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] w-auto h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50">
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"
@@ -251,7 +253,7 @@ function Home() {
                 <CardItem
                   as="p"
                   translateZ="60"
-                  className="text-slate-600 text-sm max-w-sm mt-2"
+                  className="text-slate-700 text-sm max-w-sm mt-2"
                 >
                   Code. Build. Innovate. Workshops, hackathons, and real-world projects.
                 </CardItem>
@@ -267,7 +269,7 @@ function Home() {
                 <div className="flex justify-end items-center mt-10">
                   <CardItem
                     translateZ={20}
-                    as={Link} // This is why we need the import
+                    as={Link}
                     to="/technical"
                     className="px-4 py-2 rounded-xl bg-brand-dark text-white text-xs font-bold"
                   >
@@ -279,7 +281,8 @@ function Home() {
 
             {/* --- CARD 3: CULTURAL --- */}
             <CardContainer className="inter-var">
-              <CardBody className="bg-slate-50 relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] border-slate-200 w-auto h-auto rounded-xl p-6 border">
+              {/* --- THIS IS THE CHANGE --- */}
+              <CardBody className="relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] w-auto h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50">
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"
@@ -289,7 +292,7 @@ function Home() {
                 <CardItem
                   as="p"
                   translateZ="60"
-                  className="text-slate-600 text-sm max-w-sm mt-2"
+                  className="text-slate-700 text-sm max-w-sm mt-2"
                 >
                   Express. Perform. Inspire. The stage is yours, from dance to music.
                 </CardItem>
@@ -305,7 +308,7 @@ function Home() {
                 <div className="flex justify-end items-center mt-10">
                   <CardItem
                     translateZ={20}
-                    as={Link} // This is why we need the import
+                    as={Link}
                     to="/cultural"
                     className="px-4 py-2 rounded-xl bg-brand-dark text-white text-xs font-bold"
                   >

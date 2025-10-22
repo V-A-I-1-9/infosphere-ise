@@ -103,16 +103,17 @@ export function GooeyText({
         <span
           ref={text1Ref}
           className={cn(
-            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
-            textClassName
+            "absolute inline-block select-none text-center",
+            // default responsive sizes for mobile-first layout; overridden when textClassName is provided
+            textClassName ?? "text-2xl sm:text-3xl md:text-6xl",
+            "text-foreground"
           )} />
         <span
           ref={text2Ref}
           className={cn(
-            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
-            textClassName
+            "absolute inline-block select-none text-center",
+            textClassName ?? "text-2xl sm:text-3xl md:text-6xl",
+            "text-foreground"
           )} />
       </div>
     </div>
