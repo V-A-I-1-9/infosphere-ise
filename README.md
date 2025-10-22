@@ -130,35 +130,33 @@ VITE_CULTURAL_ACHIEVEMENT_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET
 (Refer to the original README or project documentation for details on Sheet Structure and Google Apps Script Setup, as this backend logic remains unchanged.)
 
 ## 📁 Project Structure
-```
 infosphere-ise/
-├── public/                 
-├── src/                   
-│   ├── assets/            # Images, logos (clubs, gallery, profiles)
-│   ├── components/        # UI components for various pages
-│   │   ├── cultural/      # Cultural page component
-│   │   ├── events/        # Events page & EventTimelineCard component
-│   │   ├── home/          # Home page component
-│   │   ├── sports/        # Sports page component
-│   │   ├── technical/     # Technical page component
-│   │   └── ui/            # Reusable UI components (shadcn, Aceternity, 21st.dev)
-│   ├── hooks/             # React Query data fetching hooks
-│   ├── lib/               # Utilities (e.g., cn function from shadcn)
-│   ├── pages/             # Layout, Footer, Header, Spinner, PageNotFound
-│   ├── services/          # API layer (fetching CSV data)
+├── public/
+├── src/
+│   ├── assets/         # Images, logos (clubs, gallery, profiles)
+│   ├── components/
+│   │   ├── cultural/     # Cultural page component
+│   │   ├── events/       # Events page & EventTimelineCard component
+│   │   ├── home/         # Home page component
+│   │   ├── sports/       # Sports page component
+│   │   ├── technical/    # Technical page component
+│   │   └── ui/           # Reusable UI components (shadcn, Aceternity, 21st.dev)
+│   ├── hooks/          # React Query data fetching hooks
+│   ├── lib/            # Utilities (e.g., cn function from shadcn)
+│   ├── pages/          # Layout, Footer, Header, Spinner, PageNotFound
+│   ├── services/       # API layer (fetching CSV data)
 │   ├── App.jsx
-│   ├── App.css            # Global styles & Tailwind directives
+│   ├── App.css         # Global styles & Tailwind directives
 │   └── main.jsx
 ├── .env
 ├── .gitignore
-├── components.json        # shadcn/ui config
-├── jsconfig.json          # JS path aliases
+├── components.json     # shadcn/ui config
+├── jsconfig.json       # JS path aliases
 ├── package.json
-├── postcss.config.js      # PostCSS config
-├── tailwind.config.js     # Tailwind config
+├── postcss.config.js   # PostCSS config
+├── tailwind.config.js  # Tailwind config
 ├── vite.config.js
 └── README.md
-```
 
 ## 🤝 Contributing
 Contributions are welcome! Here’s how you can contribute:
