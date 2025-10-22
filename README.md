@@ -1,307 +1,201 @@
-# 🎯 Infosphere - ISE Department Club Portal
+# 🎯 Infosphere - ISE Department Club Portal (Redesigned)
 
-### A modern web platform for managing Sports, Technical, and Cultural club activities at MIT Mysore
+A modern, highly-interactive web platform for managing Sports, Technical, and Cultural club activities at MIT Mysore, featuring a stunning UI built with Tailwind CSS, Aceternity UI, and 21st.dev components.
 
-[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.3.5-646CFF.svg)](https://vitejs.dev/)
-[![React Query](https://img.shields.io/badge/React_Query-4.36.1-FF4154.svg)](https://tanstack.com/query)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
----
+[![React](https://img.shields.io/badge/React-18.2.0-blue?logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.3.5-yellowgreen?logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-blueviolet?logo=tailwind-css)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 📋 Table of Contents
 
-- [About](#about)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-- [Project Structure](#project-structure)
-- [Google Sheets Integration](#google-sheets-integration)
-- [Usage](#usage)
-- [Available Scripts](#available-scripts)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [Authors](#authors)
-- [License](#license)
-
----
+* [About](#about)
+* [UI/UX Enhancements](#uiux-enhancements)
+* [Core Features](#core-features)
+* [Tech Stack](#tech-stack)
+* [Getting Started](#getting-started)
+* [Google Sheets Integration](#google-sheets-integration)
+* [Project Structure](#project-structure)
+* [Contributing](#contributing)
+* [Authors](#authors)
+* [License](#license)
+* [Acknowledgments](#acknowledgments)
 
 ## 🌟 About
 
-**Infosphere** is a comprehensive web portal for the Information Science & Engineering Department at Maharaja Institute of Technology, Mysore. It serves as a centralized platform for managing and showcasing activities across three major clubs:
+**Infosphere** is a comprehensive web portal for the Information Science & Engineering Department at Maharaja Institute of Technology, Mysore. Originally designed as a centralized platform for managing club activities, this version features a complete **frontend redesign** focused on delivering a highly engaging and visually appealing user experience.
 
-- **⚽ Sports Club** - Athletic events, team rosters, and achievements
-- **💻 Technical Club** - Workshops, hackathons, projects, and technical achievements
-- **🎭 Cultural Club** - Dance, music, drama events, and cultural performances
+It showcases activities across three major clubs:
+* ⚽ **Sports Club:** Athletic events, team rosters, achievements.
+* 💻 **Technical Club:** Workshops, hackathons, projects, technical achievements.
+* 🎭 **Cultural Club:** Dance, music, drama events, cultural performances.
 
-The platform uses **Google Sheets as a CMS**, making it easy for non-technical staff to update content without code deployment.
+The platform continues to leverage **Google Sheets as a CMS**, making content updates easy for non-technical staff without requiring code deployment.
 
----
+## ✨ UI/UX Enhancements
 
-## ✨ Features
+This redesigned version elevates the user experience with modern UI components and animations:
+* **Interactive Background:** A subtle, cursor-following gradient provides a dynamic feel throughout the site.
+* **Animated Hero:** Gooey text morphing and staggered animations create a captivating landing experience.
+* **Modern Navigation:** Features a sleek "Tubelight" navbar (desktop) that transitions to a bottom-fixed icon bar (mobile).
+* **Engaging Visuals:** Includes a 3D Photo Carousel, interactive Comet Cards for coordinators, and dynamic Wobble Cards with glassmorphism effects.
+* **Elegant Events Timeline:** Presents events chronologically using Aceternity's Timeline, featuring interactive "Focus Cards" with glassmorphism effects.
+* **Professional Footer:** A glassmorphism footer provides essential links and contact information seamlessly.
+* **Smooth Loading:** Replaced the default spinner with an animated Gooey Loader.
+* **Fully Responsive:** Built mobile-first with Tailwind CSS, ensuring a perfect experience on all devices.
 
-### Core Functionality
+## ✅ Core Features (Backend/Data)
 
-- ✅ **Real-time Data Sync** - Automatic updates from Google Sheets
-- ✅ **Smart Caching** - React Query for optimal performance (30-min cache)
-- ✅ **Responsive Design** - Mobile-first approach, works on all devices
-- ✅ **Event Calendar** - Centralized calendar for all club events
-- ✅ **Team Management** - Display team members with contact info and social links
-- ✅ **Achievement Showcase** - Highlight competition wins and awards
-- ✅ **Project Gallery** - Technical club projects with GitHub/demo links
-- ✅ **Fast Loading** - Code splitting and lazy loading for instant page loads
-
-### Technical Features
-
-- ⚡ **Vite Build Tool** - Lightning-fast development and build times
-- 🔄 **React Query** - Server state management with automatic caching
-- 🎨 **Modern CSS** - Responsive grid layouts with Flexbox/Grid
-- 📊 **CSV Parsing** - PapaParse for Google Sheets integration
-- 🧪 **Test Data Generator** - Built-in Google Apps Scripts for dummy data
-- 🔐 **Environment Variables** - Secure configuration management
-
----
+* **Real-time Data Sync:** Automatic updates from Google Sheets.
+* **Smart Caching:** React Query for optimal performance (30-min cache).
+* **Google Sheets CMS:** Easy content management for non-technical users.
+* **Centralized Data:** Manages events, teams, achievements, and projects across all clubs.
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-
-- **React 18.2.0** - UI library with hooks
-- **React Router 6.30.0** - Client-side routing
-- **React Query 4.36.1** - Server state management
-- **Vite 6.3.5** - Build tool and dev server
-- **PapaParse 5.5.2** - CSV parsing for Google Sheets
-- **React Icons 5.5.0** - Icon library
+* **React 18.2.0:** UI library with hooks.
+* **Vite 6.3.5:** Build tool and dev server.
+* **Tailwind CSS 3.x:** Utility-first CSS framework for rapid UI development.
+* **shadcn/ui:** Re-usable components built using Radix UI and Tailwind CSS.
+* **Aceternity UI:** Beautifully crafted UI components for React & Tailwind.
+* **21st.dev Components:** Community-contributed modern UI elements.
+* **Framer Motion:** Animation library for React.
+* **React Router 6.30.0:** Client-side routing.
+* **React Query 4.36.1:** Server state management.
+* **Lucide React:** Icon library.
+* **PapaParse 5.5.2:** CSV parsing for Google Sheets integration.
 
 ### Backend/CMS
-
-- **Google Sheets** - Content management system
-- **Google Apps Script** - Automated data fetching and validation
-- **Google Drive** - File storage for images/posters
+* **Google Sheets:** Content management system.
+* **Google Apps Script:** Automated data fetching and validation (as per original setup).
+* **Google Drive:** File storage for images/posters (as per original setup).
 
 ### Development Tools
-
-- **ESLint 9.25.0** - Code linting
-- **React Query Devtools** - Query debugging
-
----
+* **ESLint:** Code linting.
+* **React Query Devtools:** Query debugging.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- **Node.js** (v18 or higher) - [Download](https://nodejs.org/)
-- **npm** or **yarn** - Comes with Node.js
-- **Git** - [Download](https://git-scm.com/)
-- **Google Account** - For Google Sheets integration
+* Node.js (v18 or higher) - [Download](https://nodejs.org/)
+* npm or yarn (comes with Node.js)
+* Git - [Download](https://git-scm.com/)
+* Google Account (for Google Sheets integration)
 
 ### Installation
+1.  Clone the repository:
+    ```bash
+    git clone [https://github.com/V-A-I-1-9/infosphere-ise.git](https://github.com/V-A-I-1-9/infosphere-ise.git)
+    cd infosphere-ise
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+3.  Set up environment variables (see below).
+4.  Start the development server:
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+5.  Open in browser: Navigate to `http://localhost:5173` (or the port specified).
 
-1. **Clone the repository**
-   git clone https://github.com/your-username/infosphere-club-portal.git
-   cd infosphere-club-portal
+### Environment Variables
+Create a `.env` file in the project root (`touch .env`) with the following variables, pointing to your Google Sheets CSV export URLs:
 
-2. **Install dependencies**
-   npm install or yarn install
+```env
+# Sports Club Google Sheets URLs
+VITE_SPORTS_EVENTS_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID)
+VITE_SPORTS_TEAM_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID)
+VITE_SPORTS_ACHIEVEMENT_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID)
 
-3. **Set up environment variables**
+# Technical Club Google Sheets URLs
+VITE_TECHNICAL_EVENTS_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID)
+VITE_TECHNICAL_TEAM_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID)
+VITE_TECHNICAL_ACHIEVEMENT_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID)
+VITE_TECHNICAL_PROJECT_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=PROJECTS_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=PROJECTS_GID)
 
-Create a `.env` file in the project root:
-touch .env
+# Cultural Club Google Sheets URLs
+VITE_CULTURAL_EVENTS_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID)
+VITE_CULTURAL_TEAM_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID)
+VITE_CULTURAL_ACHIEVEMENT_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID)
 
-4. **Start development server**
-   npm run dev or yarn dev
+(How to get these URLs: Open Google Sheet -> File -> Share -> Publish to web -> Select tab & CSV -> Publish -> Copy URL)
 
-5. **Open in browser**
-
-Navigate to `http://localhost:5173`
-
-## ⚙️ Environment Variables
-
-Create a `.env` file with the following variables:
-
-Sports Club Google Sheets URLs
-VITE_SPORTS_EVENTS_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID
-VITE_SPORTS_TEAM_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID
-VITE_SPORTS_ACHIEVEMENT_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID
-
-Technical Club Google Sheets URLs
-VITE_TECHNICAL_EVENTS_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID
-VITE_TECHNICAL_TEAM_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID
-VITE_TECHNICAL_ACHIEVEMENT_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID
-VITE_TECHNICAL_PROJECT_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=PROJECTS_GID
-
-Cultural Club Google Sheets URLs
-VITE_CULTURAL_EVENTS_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=EVENTS_GID
-VITE_CULTURAL_TEAM_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=TEAM_GID
-VITE_CULTURAL_ACHIEVEMENT_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=ACHIEVEMENTS_GID
-
-Event Calendar
-VITE_EVENT_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=CALENDAR_GID
-
-**How to get these URLs:**
-
-1. Open your Google Sheet
-2. Go to **File → Share → Publish to web**
-3. Select the specific tab (e.g., "Events")
-4. Choose **Comma-separated values (.csv)**
-5. Click **Publish** and copy the URL
-
----
+# 📊 Google Sheets Integration
+(Refer to the original README or project documentation for details on Sheet Structure and Google Apps Script Setup, as this backend logic remains unchanged.)
 
 ## 📁 Project Structure
-
-infosphere-club-portal/
-├── public/
-│ ├── android-chrome-192x192.png
-│ └── favicon.ico
-├── src/
-│ ├── components/
-│ │ ├── home/
-│ │ │ └── Home.jsx
-│ │ ├── sports/
-│ │ │ ├── Sports.jsx
-│ │ │ └── Sports.css
-│ │ ├── technical/
-│ │ │ ├── Technical.jsx
-│ │ │ └── Technical.css
-│ │ ├── cultural/
-│ │ │ ├── Cultural.jsx
-│ │ │ └── Cultural.css
-│ │ └── events/
-│ │ ├── Events.jsx
-│ │ └── Events.css
-│ ├── hooks/
-│ │ ├── useSportsData.js
-│ │ ├── useTechnicalData.js
-│ │ ├── useCulturalData.js
-│ │ └── useEventsData.js
-│ ├── services/
-│ │ ├── apiSports.js
-│ │ ├── apiTechnical.js
-│ │ ├── apiCultural.js
-│ │ └── apiEvents.js
-│ ├── pages/
-│ │ ├── AppLayout.jsx
-│ │ ├── Header.jsx
-│ │ ├── Footer.jsx
-│ │ ├── Spinner.jsx
-│ │ └── PageNotFound.jsx
-│ ├── App.jsx
-│ ├── App.css
-│ └── main.jsx
+```
+infosphere-ise/
+├── public/                 
+├── src/                   
+│   ├── assets/            # Images, logos (clubs, gallery, profiles)
+│   ├── components/        # UI components for various pages
+│   │   ├── cultural/      # Cultural page component
+│   │   ├── events/        # Events page & EventTimelineCard component
+│   │   ├── home/          # Home page component
+│   │   ├── sports/        # Sports page component
+│   │   ├── technical/     # Technical page component
+│   │   └── ui/            # Reusable UI components (shadcn, Aceternity, 21st.dev)
+│   ├── hooks/             # React Query data fetching hooks
+│   ├── lib/               # Utilities (e.g., cn function from shadcn)
+│   ├── pages/             # Layout, Footer, Header, Spinner, PageNotFound
+│   ├── services/          # API layer (fetching CSV data)
+│   ├── App.jsx
+│   ├── App.css            # Global styles & Tailwind directives
+│   └── main.jsx
 ├── .env
 ├── .gitignore
+├── components.json        # shadcn/ui config
+├── jsconfig.json          # JS path aliases
 ├── package.json
+├── postcss.config.js      # PostCSS config
+├── tailwind.config.js     # Tailwind config
 ├── vite.config.js
 └── README.md
-
----
-
-## 📊 Google Sheets Integration
-
-### Sheet Structure
-
-Each club has 3 Google Sheets with specific columns:
-
-#### **Sports Club**
-
-**Events Tab:**
-
-- File_ID, File_Name, File_URL, Sport_Type, Event_Name, Event_Date, Match_Result, Venue, Description
-
-**Team Tab:**
-
-- File_ID, Photo_URL, Member_Name, Role, Sport_Type, Jersey_Number, Year, Bio, Contact_Email, Contact_Phone
-
-**Achievements Tab:**
-
-- File_ID, File_URL, Sport_Type, Achievement_Title, Achievement_Date, Achievement_Type, Level, Winner_Names, Description
-
-#### **Technical Club**
-
-**Events Tab:**
-
-- File_ID, File_URL, Event_Type, Event_Name, Event_Date, Topic_Technology, Speaker_Instructor, Duration, Venue, Registration_Link, Description
-
-**Team Tab:**
-
-- File_ID, Photo_URL, Member_Name, Role, Specialization, Year, Bio, Contact_Email, GitHub_Profile, LinkedIn_Profile
-
-**Achievements Tab:**
-
-- File_ID, File_URL, Competition_Name, Achievement_Date, Achievement_Type, Level, Winner_Names, Project_Name, Description
-
-**Projects Tab:** (Unique to Technical)
-
-- File_ID, File_URL, Project_Name, Year, Category, Team_Members, Technology_Stack, Project_Abstract, GitHub_URL, Demo_URL, Status
-
-#### **Cultural Club**
-
-**Events Tab:**
-
-- File_ID, File_URL, Event_Name, Event_Date, Event_Type, Venue, Description
-
-**Team Tab:**
-
-- File_ID, Photo_URL, Member_Name, Role, Category, Year, Bio, Contact_Email, Contact_Phone
-
-**Achievements Tab:**
-
-- File_ID, File_URL, Achievement_Title, Achievement_Date, Achievement_Type, Level, Winner_Names, Description
-
-#### **Event Calendar**
-
-- event_id, title, category, sub_category, start, end, venue, description, registration_link, poster_url, status, featured
-
-### Google Apps Script Setup
-
-1. Open your Google Sheet
-2. Go to **Extensions → Apps Script**
-3. Copy the provided script for each club (Sports, Technical, Cultural, Events)
-4. Update `FOLDER_IDS` with your Google Drive folder IDs
-5. Run **🧪 Generate Test Data** to populate with sample data
-6. Use **🔄 Refresh Data** to sync from Drive folders
+```
 
 ## 🤝 Contributing
+Contributions are welcome! Here’s how you can contribute:
 
-Contributions are welcome! Here's how:
+1. **Fork** the repository.
+2. **Create** your feature branch:
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit** your changes:
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. **Push** to the branch:
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. Open a **Pull Request**.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## 🧑‍💻 Authors
+- **V-A-I-1-9** - UI Redesign & Implementation
+- **R-Pradhyumna** - Initial Backend/Data Structure
 
----
+(Feel free to add more contributors or adjust roles.)
 
 ## 📄 License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
 ## 🙏 Acknowledgments
+- **MIT Mysore ISE Department** faculty and students.
+- **Aceternity UI** & **21st.dev** for their amazing UI components.
+- **shadcn/ui** for the component structure and tooling.
+- **Tailwind CSS** team.
+- **React Query** team.
+- **Google Workspace** for Sheets integration.
+- **Unsplash** for placeholder images.
 
-- MIT Mysore ISE Department faculty and students
-- React Query team for excellent documentation
-- Unsplash for free stock images
-- Google Workspace for Sheets integration
 
----
-
-## 📞 Contact
-
-For questions or support:
-
-- Email: hodise@mitmysore.in
-- Department: Information Science & Engineering, MIT Mysore
-
----
-
-**Made with ❤️ by ISE Department, MIT Mysore**
+# Event Calendar (Consolidated)
+VITE_EVENT_URL=[https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=CALENDAR_GID](https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=CALENDAR_GID)
