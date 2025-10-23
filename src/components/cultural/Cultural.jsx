@@ -4,10 +4,11 @@ import Spinner from '../../pages/Spinner';
 import { CometCard } from "@/components/ui/comet-card";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { Mail, Phone } from 'lucide-react'; // Icons for team cards
+import { motion } from 'framer-motion';
 
 // --- ASSET IMPORTS --- (Using the same placeholders)
-import facultyImg1 from '../../assets/profiles/faculty-1.png';
-import facultyImg2 from '../../assets/profiles/faculty-2.png';
+import facultyImg1 from '../../assets/profiles/smithashree.jpg';
+import ch from '../../assets/profiles/culhead.jpg';
 
 // Helper function to format dates
 function formatDate(dateString) {
@@ -46,15 +47,15 @@ function Cultural() {
   const coordinatorsData = [
     {
       id: 'faculty-coord', // Unique key
-      name: 'Prof. Faculty Name', // <-- EDIT THIS NAME
+      name: 'Prof. Smithashree KP', // <-- EDIT THIS NAME
       role: 'Faculty Coordinator', // <-- EDIT THIS ROLE
       photo: facultyImg1         // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg1)
     },
     {
       id: 'student-coord', // Unique key
-      name: 'Student Name',       // <-- EDIT THIS NAME
-      role: 'Student Coordinator', // <-- EDIT THIS ROLE
-      photo: facultyImg2        // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg2)
+      name: 'Bhuvan HN',       // <-- EDIT THIS NAME
+      role: 'Cultural Head', // <-- EDIT THIS ROLE
+      photo: ch        // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg2)
     },
   ];
 
@@ -65,12 +66,25 @@ function Cultural() {
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
 
-      {/* 1. Gradient Page Title */}
-      <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-16 text-center">
+      {/* 1. Gradient Page Title (with animation) */}
+      <motion.h1
+        className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
           Cultural
         </span> Club
-      </h1>
+      </motion.h1>
+      <motion.p
+        className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        Express • Perform • Inspire
+      </motion.p>
 
       {/* 2. Coordinators Section (Comet Cards) */}
       <section className="my-16">
@@ -105,7 +119,7 @@ function Cultural() {
       </section>
 
       {/* 3. Events Section */}
-      {events.length > 0 && (
+      {events.length > 0 ? (
         <section className="my-24">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
             Performances & Events
@@ -131,6 +145,17 @@ function Cultural() {
                 </WobbleCard>
               );
             })}
+          </div>
+        </section>
+      ) : (
+        <section className="my-24">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+            Performances & Events
+          </h2>
+          <div className="text-center py-16 px-6 bg-slate-50 rounded-2xl border border-slate-200">
+            <p className="text-xl text-slate-500 italic">
+              No performances planned right now. Keep an eye out for upcoming shows! 🎭
+            </p>
           </div>
         </section>
       )}

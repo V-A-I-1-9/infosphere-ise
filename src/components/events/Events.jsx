@@ -89,9 +89,16 @@ function EventsPage() {
         Check out our upcoming events and join us for fun, learning, and networking!.
       </motion.p>
 
-      <section>
-        {/* --- FIX: Removed the 'wrapperClassName' prop --- */}
-        <Timeline data={timelineData} />
+      <section className="my-12">
+        {timelineData.length > 0 ? (
+          <Timeline data={timelineData} />
+        ) : (
+          <div className="text-center py-16 px-6 bg-slate-50 rounded-2xl border border-slate-200">
+            <p className="text-xl text-slate-500 italic">
+              No events scheduled at the moment. Check back soon! 📅
+            </p>
+          </div>
+        )}
       </section>
 
     </div>

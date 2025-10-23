@@ -4,10 +4,12 @@ import Spinner from '../../pages/Spinner';
 import { CometCard } from "@/components/ui/comet-card";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { Mail } from 'lucide-react'; // Icons for team cards
+import { motion } from 'framer-motion';
 
 // --- ASSET IMPORTS --- (Ensure these are correct)
-import facultyImg1 from '../../assets/profiles/faculty-1.png';
-import facultyImg2 from '../../assets/profiles/faculty-2.png';
+import facultyImg1 from '../../assets/profiles/amruth.jpg';
+import ss from '../../assets/profiles/sportssec.jpg';
+import sh from '../../assets/profiles/sportshead.jpg';
 // ... Add other profile/club images if needed ...
 
 // Helper function to format dates, if they exist
@@ -48,15 +50,21 @@ function Sports() {
   const coordinatorsData = [
     {
       id: 'faculty-coord-sports', // Unique key
-      name: 'Prof. Sports Faculty', // <-- EDIT THIS
+      name: 'Prof. Amruth V', // <-- EDIT THIS
       role: 'Faculty Coordinator', // <-- EDIT THIS
       photo: facultyImg1         // <-- EDIT THIS (make sure facultyImg1 is imported)
     },
     {
       id: 'student-coord-sports', // Unique key
-      name: 'Sports Student Lead',// <-- EDIT THIS
-      role: 'Student Coordinator', // <-- EDIT THIS
-      photo: facultyImg2        // <-- EDIT THIS (make sure facultyImg2 is imported)
+      name: 'Nagesh N',// <-- EDIT THIS
+      role: 'Sports Head', // <-- EDIT THIS
+      photo: sh        // <-- EDIT THIS (make sure studentImg1 is imported)
+    },
+    {
+      id: 'student2-coord-sports', // Unique key
+      name: 'Kushal R Gowda',// <-- EDIT THIS
+      role: 'Sports Secretary', // <-- EDIT THIS
+      photo: ss        // <-- EDIT THIS (make sure studentImg1 is imported)
     },
   ];
   const players = team.filter(member =>
@@ -66,12 +74,25 @@ function Sports() {
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
 
-      {/* 1. Gradient Page Title */}
-      <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-16 text-center">
+      {/* 1. Gradient Page Title (with animation) */}
+      <motion.h1
+        className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
           Sports
         </span> Club
-      </h1>
+      </motion.h1>
+      <motion.p
+        className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        Compete • Achieve • Excel
+      </motion.p>
 
       {/* 2. Coordinators Section (Comet Cards) */}
       <section className="my-16">
@@ -79,7 +100,6 @@ function Sports() {
           Our Coordinators
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-          {/* CHANGE THIS LINE: */}
           {coordinatorsData.map((member) => { // <-- Use coordinatorsData instead of displayCoordinators
             const key = member.id; // Use the hardcoded id
             const name = member.name;
@@ -111,45 +131,52 @@ function Sports() {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
             Recent Events
           </h2>
-          {/* Added justify-items-center */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-            {events.map((event, index) => {
-              const key = event.file_id || event.File_ID || `event-${index}`;
-              return (
-                <WobbleCard
-                  key={key}
-                  // --- GLASSMORPHISM ADDED ---
-                  containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
-                >
-                  {/* Image container needed to enforce rounded corners */}
-                  <div className="w-full h-48 overflow-hidden rounded-t-3xl">
-                    <img
-                      src={event.file_url || event.File_URL}
-                      alt={event.event_name || event.Event_Name}
-                      className="w-full h-full object-cover" // Removed rounded here
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-xl font-bold text-slate-900 leading-tight">
-                      {event.event_name || event.Event_Name}
-                    </h3>
-                    <p className="font-semibold text-brand-dark mt-1">
-                      {event.sport_type || event.Sport_Type}
-                    </p>
-                    <p className="text-sm text-slate-700 mt-3"> {/* Darker text for readability */}
-                      {formatDate(event.event_date || event.Event_Date)}
-                    </p>
-                    <p className="text-sm text-slate-700"> {/* Darker text */}
-                      {event.venue || event.Venue}
-                    </p>
-                    <p className="font-semibold text-slate-800 mt-2">
-                      {event.match_result || event.Match_Result}
-                    </p>
-                  </div>
-                </WobbleCard>
-              );
-            })}
-          </div>
+
+          {events.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+              {events.map((event, index) => {
+                const key = event.file_id || event.File_ID || `event-${index}`;
+                return (
+                  <WobbleCard
+                    key={key}
+                    containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
+                  >
+                    {/* Image container needed to enforce rounded corners */}
+                    <div className="w-full h-48 overflow-hidden rounded-t-3xl">
+                      <img
+                        src={event.file_url || event.File_URL}
+                        alt={event.event_name || event.Event_Name}
+                        className="w-full h-full object-cover" // Removed rounded here
+                      />
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-xl font-bold text-slate-900 leading-tight">
+                        {event.event_name || event.Event_Name}
+                      </h3>
+                      <p className="font-semibold text-brand-dark mt-1">
+                        {event.sport_type || event.Sport_Type}
+                      </p>
+                      <p className="text-sm text-slate-700 mt-3"> {/* Darker text for readability */}
+                        {formatDate(event.event_date || event.Event_Date)}
+                      </p>
+                      <p className="text-sm text-slate-700"> {/* Darker text */}
+                        {event.venue || event.Venue}
+                      </p>
+                      <p className="font-semibold text-slate-800 mt-2">
+                        {event.match_result || event.Match_Result}
+                      </p>
+                    </div>
+                  </WobbleCard>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-16 px-6 bg-slate-50 rounded-2xl border border-slate-200">
+              <p className="text-xl text-slate-500 italic">
+                No recent sports events to show right now. Please check back later! 🏅
+              </p>
+            </div>
+          )}
         </section>
       )}
 

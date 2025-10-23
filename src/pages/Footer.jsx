@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Linkedin, Github, Mail, Phone, MapPin } from 'lucide-react';
-import IseLogo from '../assets/ISE.png'; // Using your existing logo
+import InfoLogo from '../assets/InfoSphereLogo.png'; // Using your existing logo
 
 function Footer() {
   return (
@@ -17,9 +17,11 @@ function Footer() {
         {/* Column 1: Identity */}
         <div className="flex flex-col items-center md:items-start">
           <div className="flex items-center gap-2 mb-3">
-            <img src={IseLogo} alt="ISE Dept Logo" className="h-10 w-auto" />
+            <img src={InfoLogo} alt="ISE Dept Logo" className="h-10 w-auto" />
             <span className="font-bold text-lg text-brand-dark">
-              Infosphere ISE
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
+              Infosphere
+            </span>
             </span>
           </div>
           <p className="text-sm text-slate-600 text-center md:text-left">
@@ -48,16 +50,12 @@ function Footer() {
             <li className="flex items-center gap-2">
               <Mail size={16} />
               <a href="mailto:infosphere@mmit.edu.in" className="hover:text-brand-dark transition-colors">
-                infosphere@mmit.edu.in
+                infosphereISE@gmail.com
               </a>
             </li>
             <li className="flex items-center gap-2">
-              <Phone size={16} />
-              <span>+91 12345 67890</span>
-            </li>
-            <li className="flex items-center gap-2">
               <MapPin size={16} />
-              <span>MIT, Mysuru-570018</span>
+              <span>MIT Mysore, Srirangapatna - 570028</span>
             </li>
           </ul>
         </div>
@@ -71,9 +69,6 @@ function Footer() {
             </a>
             <a href="#" aria-label="LinkedIn" className="text-slate-500 hover:text-brand-dark transition-colors">
               <Linkedin size={24} />
-            </a>
-            <a href="#" aria-label="GitHub" className="text-slate-500 hover:text-brand-dark transition-colors">
-              <Github size={24} />
             </a>
           </div>
         </div>

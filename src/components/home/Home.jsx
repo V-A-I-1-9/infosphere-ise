@@ -7,63 +7,126 @@ import InfosphereLogo from '../../assets/InfoSphereLogo.png';
 import ThreeDPhotoCarousel from "@/components/ui/3d-carousel"
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import facultyImg1 from '../../assets/profiles/faculty-1.png';
-import facultyImg2 from '../../assets/profiles/faculty-2.png';
-import facultyImg3 from '../../assets/profiles/faculty-3.png';
-import facultyImg4 from '../../assets/profiles/faculty-4.png';
-import facultyImg5 from '../../assets/profiles/faculty-5.png';
-import facultyImg6 from '../../assets/profiles/faculty-6.png';
+import facultyImg1 from '../../assets/profiles/bhavyashree.jpg';
+import facultyImg2 from '../../assets/profiles/ravi.jpg';
+import facultyImg3 from '../../assets/profiles/amruth.jpg';
+import facultyImg4 from '../../assets/profiles/smithashree.jpg';
+import facultyImg5 from '../../assets/profiles/sangeetha.jpg';
+import facultyImg6 from '../../assets/profiles/thalivar.jpg';
+import vp from '../../assets/profiles/vp.jpg';
+import js from '../../assets/profiles/jointsec.jpg';
+import ss from '../../assets/profiles/sportssec.jpg';
+import sh from '../../assets/profiles/sportshead.jpg';
+import t from '../../assets/profiles/Treasurer.jpg';
+import s from '../../assets/profiles/secretary.jpg';
+import p from '../../assets/profiles/p.jpg';
+import th from '../../assets/profiles/techhead.jpg';
+import ch from '../../assets/profiles/culhead.jpg';
 // Club Images (Using your new filenames)
-import sportsImg from '../../assets/clubs/sports.webp';
-import techImg from '../../assets/clubs/technical.png';
-import culturalImg from '../../assets/clubs/cultural.png';
+import sportsImg from '../../assets/clubs/sports.jpg';
+import techImg from '../../assets/clubs/tech.jpg';
+import culturalImg from '../../assets/clubs/cul.jpg';
 import { motion } from "framer-motion";
 
 const facultyCoordinators = [
   {
     quote:
-      "Guiding the next generation of innovators is our passion. We are proud to support the diverse activities of Infosphere.",
-    name: "Dr. XYZ",
-    designation: "HOD, Dept. of ISE",
-    src: facultyImg1, // Was hodImg
+      "Empowering young innovators to shape tomorrow’s world—Infosphere is where ideas find their wings.",
+    name: "Prof. Bavyashree HD",
+    designation: "Head Faculty Coordinator, Infosphere",
+    src: facultyImg1,
   },
   {
     quote:
-      "The technical club is a hub of creativity. It's inspiring to see students turn ideas into real-world projects.",
-    name: "Prof. ABC",
+      "At Infosphere, imagination meets innovation—our students redefine what’s possible every day.",
+    name: "Dr. Ravi P",
+    designation: "Head Faculty Coordinator, Infosphere",
+    src: facultyImg2,
+  },
+  {
+    quote:
+      "Innovation begins with curiosity. At Infosphere, we nurture that spark into brilliance.",
+    name: "Prof. Amruth V",
+    designation: "Faculty Coordinator, Infosphere",
+    src: facultyImg3,
+  },
+  {
+    quote:
+      "Technology is more than tools—it’s a mindset. Infosphere inspires students to think, build, and transform.",
+    name: "Prof. Smithashree KP",
     designation: "Faculty Coordinator, Technical Club",
-    src: facultyImg2, // Was facultyImg1
+    src: facultyImg4,
+  },
+  {
+    quote:
+      "Every great creation starts with a single idea. Infosphere helps students turn that idea into impact.",
+    name: "Prof. Sangeetha G",
+    designation: "Faculty Coordinator, Technical Club",
+    src: facultyImg5,
+  },
+  {
+    quote:
+      "Collaboration fuels innovation. Infosphere is where teamwork drives technological excellence.",
+    name: "Prof. Vijaykumar",
+    designation: "Faculty Coordinator, Technical Club",
+    src: facultyImg6,
   },
 ];
 
 const coreCommittee = [
   {
-    quote:
-      "Leading Infosphere is an incredible experience. We work to create opportunities for every student to shine.",
-    name: "Student President",
+    quote: "Infosphere is where ideas turn into impact — leading it is all about empowering our peers to explore, learn, and create.",
+    name: "Sagar C",
     designation: "President, Infosphere",
-    src: facultyImg3, // Was studentImg1
+    src: p,
   },
   {
-    quote:
-      "Organizing sports events brings so much energy to the campus. It's all about teamwork and spirit.",
-    name: "Student Sports Head",
+    quote: "Being part of Infosphere means inspiring teamwork and innovation — together, we make every idea count.",
+    name: "Dheeksha D Shetty",
+    designation: "Vice President, Infosphere",
+    src: vp,
+  },
+  {
+    quote: "Coordinating events and initiatives at Infosphere is about keeping the spark alive and helping every student be heard.",
+    name: "Varun NS",
+    designation: "Secretary, Infosphere",
+    src: s,
+  },
+  {
+    quote: "Teamwork and collaboration define Infosphere — every role, every effort adds to our shared success.",
+    name: "Niharika MS",
+    designation: "Joint Secretary, Infosphere",
+    src: js,
+  },
+  {
+    quote: "Managing resources isn’t just about numbers — it’s about making every opportunity count for the club and its members.",
+    name: "Rocky S Simethy",
+    designation: "Treasurer, Infosphere",
+    src: t,
+  },
+  {
+    quote: "Sports bring energy, unity, and spirit to Infosphere — it’s all about pushing limits and celebrating teamwork.",
+    name: "Nagesh N",
     designation: "Sports Head, Infosphere",
-    src: facultyImg4, // Was studentImg2
+    src: sh,
   },
   {
-    quote:
-      "From dance to drama, the cultural wing is the heartbeat of the department. We celebrate creativity in all its forms.",
-    name: "Student Cultural Head",
+    quote: "Being a student secretary means being the bridge — connecting people, plans, and passion at Infosphere.",
+    name: "Kushal R Gowda",
+    designation: "Sports Secretary, Infosphere",
+    src: ss,
+  },
+  {
+    quote: "Culture is where creativity thrives — through dance, art, and drama, Infosphere celebrates every shade of talent.",
+    name: "Bhuvan HN",
     designation: "Cultural Head, Infosphere",
-    src: facultyImg5, // Was studentImg3
+    src: ch,
   },
   {
-    quote:
-      "Managing the technical projects and workshops is a rewarding challenge. We're building the future, one line of code at a time.",
-    name: "Student Technical Head",
+    quote: "From code to creation, every technical event at Infosphere is a step toward innovation and discovery.",
+    name: "Sonashree MS",
     designation: "Technical Head, Infosphere",
-    src: facultyImg6, // Added another one
+    src: th,
   },
 ];
 
@@ -95,24 +158,24 @@ function Home() {
   return (
     <>
       {/* --- SECTION 1: HERO --- */}
-      <motion.section 
+      <motion.section
         className="w-full min-h-[calc(100vh-80px)] flex items-center justify-center py-12 md:py-16 overflow-hidden"
         variants={heroContainerVariants}
         initial="hidden"
         animate="visible"
       >
         <div className="container mx-auto px-4 text-center flex flex-col items-center">
-          
+
           <motion.div className="relative inline-block mb-10" variants={heroItemVariants}>
             <div className="absolute inset-0 bg-brand-primary rounded-full blur-3xl opacity-75"></div>
-            <img 
-              src={InfosphereLogo} 
-              alt="Infosphere Logo" 
-              className="relative z-10 h-52 w-auto sm:h-64" 
+            <img
+              src={InfosphereLogo}
+              alt="Infosphere Logo"
+              className="relative z-10 h-52 w-auto sm:h-64"
             />
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4"
             variants={heroItemVariants}
           >
@@ -122,7 +185,7 @@ function Home() {
             </span>
           </motion.h1>
 
-          <motion.div 
+          <motion.div
             className="flex items-center justify-center min-h-[60px] md:h-[80px]"
             // --- THIS IS THE FIX ---
             // Changed heroItemvariants (lowercase v) to heroItemVariants (capital V)
@@ -145,16 +208,22 @@ function Home() {
       {/* --- SECTION 2: 3D CAROUSEL --- */}
       <section className="w-full py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-            Our Gallery
+            In{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
+              Focus
+            </span>
           </h2>
           <p className="text-lg text-slate-600 mb-12 max-w-2xl mx-auto">
-            A glimpse into our events, workshops, and achievements.
+            Bringing Our People Into the Spotlight
           </p>
-          
-          <div className="w-full max-w-4xl mx-auto">
-            <div className="min-h-[500px] flex flex-col justify-center space-y-4">
+
+          {/* --- 8. Reduced max-width on desktop --- */}
+          {/* Changed max-w-4xl to max-w-3xl */}
+          <div className="w-full max-w-3xl mx-auto">
+             {/* Adjusted min-h to account for mobile buttons below */}
+            <div className="min-h-[500px] md:min-h-[500px] flex flex-col justify-center space-y-4">
               <ThreeDPhotoCarousel />
             </div>
           </div>
@@ -164,9 +233,12 @@ function Home() {
       {/* --- SECTION 3: MEET THE TEAM --- */}
       <section className="w-full py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-            Meet the Team
+            Team Behind the{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
+              Dream
+            </span>
           </h2>
           <p className="text-lg text-slate-600 mb-16 max-w-2xl mx-auto">
             The driving force behind Infosphere, from our guiding faculty to our dedicated student leaders.
@@ -193,18 +265,27 @@ function Home() {
       <section className="w-full py-16 md:py-24">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-2">
-            Choose Your Path
+            Dive Into the{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
+              Experience
+            </span>
           </h2>
           <p className="text-lg text-slate-600 mb-16 text-center">
-            Three clubs. Endless possibilities.
+            Three clubs. Endless possibilities!
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-5xl mx-auto items-start"> {/* Use items-start for alignment */}
+
             {/* --- CARD 1: SPORTS --- */}
-            <CardContainer className="inter-var">
-              {/* --- THIS IS THE CHANGE --- */}
-              <CardBody className="relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] w-auto h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50">
+            <CardContainer
+              // Remove default padding from the outer container
+              containerClassName="py-0"
+              // Apply rounded corners and overflow hidden to the rotating div
+              className="rounded-3xl overflow-hidden"
+            >
+              {/* Apply glassmorphism and ensure CardBody fills the container */}
+              <CardBody className="relative group/card w-full h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50 hover:shadow-2xl hover:shadow-brand-primary/[0.2]">
+                {/* Card Items remain the same */}
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"
@@ -216,11 +297,11 @@ function Home() {
                   translateZ="60"
                   className="text-slate-700 text-sm max-w-sm mt-2"
                 >
-                  Play. Compete. Win. From the cricket pitch to the basketball court.
+                  Compete • Achieve • Excel
                 </CardItem>
                 <CardItem translateZ="100" className="w-full mt-4">
                   <img
-                    src={sportsImg} 
+                    src={sportsImg}
                     height="1000"
                     width="1000"
                     className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -232,7 +313,7 @@ function Home() {
                     translateZ={20}
                     as={Link}
                     to="/sports"
-                    className="px-4 py-2 rounded-xl bg-brand-dark text-white text-xs font-bold"
+                    className="px-4 py-2 rounded-full bg-gradient-to-r from-brand-primary to-brand-light text-white text-xs font-semibold shadow-md hover:shadow-lg transition-shadow"
                   >
                     Explore →
                   </CardItem>
@@ -241,9 +322,12 @@ function Home() {
             </CardContainer>
 
             {/* --- CARD 2: TECHNICAL --- */}
-            <CardContainer className="inter-var">
-              {/* --- THIS IS THE CHANGE --- */}
-              <CardBody className="relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] w-auto h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50">
+             <CardContainer
+              containerClassName="py-0"
+              className="rounded-3xl overflow-hidden"
+            >
+              <CardBody className="relative group/card w-full h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50 hover:shadow-2xl hover:shadow-brand-primary/[0.2]">
+                 {/* Card Items remain the same */}
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"
@@ -255,7 +339,7 @@ function Home() {
                   translateZ="60"
                   className="text-slate-700 text-sm max-w-sm mt-2"
                 >
-                  Code. Build. Innovate. Workshops, hackathons, and real-world projects.
+                  Innovate • Build • Code 
                 </CardItem>
                 <CardItem translateZ="100" className="w-full mt-4">
                   <img
@@ -271,7 +355,7 @@ function Home() {
                     translateZ={20}
                     as={Link}
                     to="/technical"
-                    className="px-4 py-2 rounded-xl bg-brand-dark text-white text-xs font-bold"
+                    className="px-4 py-2 rounded-full bg-gradient-to-r from-brand-primary to-brand-light text-white text-xs font-semibold shadow-md hover:shadow-lg transition-shadow"
                   >
                     Explore →
                   </CardItem>
@@ -280,9 +364,12 @@ function Home() {
             </CardContainer>
 
             {/* --- CARD 3: CULTURAL --- */}
-            <CardContainer className="inter-var">
-              {/* --- THIS IS THE CHANGE --- */}
-              <CardBody className="relative group/card hover:shadow-2xl hover:shadow-brand-primary/[0.2] w-auto h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50">
+            <CardContainer
+              containerClassName="py-0"
+              className="rounded-3xl overflow-hidden"
+            >
+              <CardBody className="relative group/card w-full h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50 hover:shadow-2xl hover:shadow-brand-primary/[0.2]">
+                 {/* Card Items remain the same */}
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"
@@ -294,7 +381,7 @@ function Home() {
                   translateZ="60"
                   className="text-slate-700 text-sm max-w-sm mt-2"
                 >
-                  Express. Perform. Inspire. The stage is yours, from dance to music.
+                  Express • Perform • Inspire
                 </CardItem>
                 <CardItem translateZ="100" className="w-full mt-4">
                   <img
@@ -310,7 +397,7 @@ function Home() {
                     translateZ={20}
                     as={Link}
                     to="/cultural"
-                    className="px-4 py-2 rounded-xl bg-brand-dark text-white text-xs font-bold"
+                    className="px-4 py-2 rounded-full bg-gradient-to-r from-brand-primary to-brand-light text-white text-xs font-semibold shadow-md hover:shadow-lg transition-shadow"
                   >
                     Explore →
                   </CardItem>

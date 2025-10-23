@@ -4,10 +4,12 @@ import Spinner from '../../pages/Spinner';
 import { CometCard } from "@/components/ui/comet-card";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { Mail, Linkedin, Github, Globe } from 'lucide-react'; // Added more icons
+import { motion } from 'framer-motion';
 
 // --- ASSET IMPORTS --- (Using the same placeholders)
-import facultyImg1 from '../../assets/profiles/faculty-1.png';
-import facultyImg2 from '../../assets/profiles/faculty-2.png';
+import facultyImg1 from '../../assets/profiles/sangeetha.jpg';
+import facultyImg2 from '../../assets/profiles/thalivar.jpg';
+import th from '../../assets/profiles/techhead.jpg';
 
 // Helper function to format dates
 function formatDate(dateString) {
@@ -46,15 +48,21 @@ function Technical() {
   const coordinatorsData = [
     {
       id: 'faculty-coord', // Unique key
-      name: 'Prof. Faculty Name', // <-- EDIT THIS NAME
+      name: 'Prof. Sangeetha', // <-- EDIT THIS NAME
       role: 'Faculty Coordinator', // <-- EDIT THIS ROLE
       photo: facultyImg1         // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg1)
     },
     {
-      id: 'student-coord', // Unique key
-      name: 'Student Name',       // <-- EDIT THIS NAME
-      role: 'Student Coordinator', // <-- EDIT THIS ROLE
+      id: 'faculty2-coord', // Unique key
+      name: 'Prof. Vijaykumar',       // <-- EDIT THIS NAME
+      role: 'Faculty Coordinator', // <-- EDIT THIS ROLE
       photo: facultyImg2        // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg2)
+    },
+    {
+      id: 'student-coord', // Unique key
+      name: 'Sonashree MS',       // <-- EDIT THIS NAME
+      role: 'Technical Head', // <-- EDIT THIS ROLE
+      photo: th        // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., studentImg2)
     },
   ];
 
@@ -65,12 +73,25 @@ function Technical() {
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
 
-      {/* 1. Gradient Page Title */}
-      <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-16 text-center">
+      {/* 1. Gradient Page Title (with animation) */}
+      <motion.h1
+        className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
           Technical
         </span> Club
-      </h1>
+      </motion.h1>
+      <motion.p
+        className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        Innovate • Build • Code
+      </motion.p>
 
       {/* 2. Coordinators Section (Comet Cards) */}
       <section className="my-16">
@@ -162,28 +183,37 @@ function Technical() {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
             Workshops & Events
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-            {events.map((event, index) => {
-              const key = event.file_id || event.File_ID || `event-${index}`;
-              return (
-                <WobbleCard
-                  key={key}
-                  containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
-                >
-                  <div className="w-full h-48 overflow-hidden rounded-t-3xl">
-                    <img src={event.file_url || event.File_URL} alt={event.event_name || event.Event_Name} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-xl font-bold text-slate-900 leading-tight">{event.event_name || event.Event_Name}</h3>
-                    <p className="font-semibold text-brand-dark mt-1">{event.event_type || event.Event_Type}</p>
-                    <p className="text-sm text-slate-700 mt-3">{formatDate(event.event_date || event.Event_Date)}</p>
-                    <p className="text-sm text-slate-700"><span className="font-semibold">Topic:</span> {event.topic_technology || event.Topic_Technology}</p>
-                    <p className="text-sm text-slate-700"><span className="font-semibold">By:</span> {event.speaker_instructor || event.Speaker_Instructor}</p>
-                  </div>
-                </WobbleCard>
-              );
-            })}
-          </div>
+
+          {events.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+              {events.map((event, index) => {
+                const key = event.file_id || event.File_ID || `event-${index}`;
+                return (
+                  <WobbleCard
+                    key={key}
+                    containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
+                  >
+                    <div className="w-full h-48 overflow-hidden rounded-t-3xl">
+                      <img src={event.file_url || event.File_URL} alt={event.event_name || event.Event_Name} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-xl font-bold text-slate-900 leading-tight">{event.event_name || event.Event_Name}</h3>
+                      <p className="font-semibold text-brand-dark mt-1">{event.event_type || event.Event_Type}</p>
+                      <p className="text-sm text-slate-700 mt-3">{formatDate(event.event_date || event.Event_Date)}</p>
+                      <p className="text-sm text-slate-700"><span className="font-semibold">Topic:</span> {event.topic_technology || event.Topic_Technology}</p>
+                      <p className="text-sm text-slate-700"><span className="font-semibold">By:</span> {event.speaker_instructor || event.Speaker_Instructor}</p>
+                    </div>
+                  </WobbleCard>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-16 px-6 bg-slate-50 rounded-2xl border border-slate-200">
+              <p className="text-xl text-slate-500 italic">
+                No technical events available right now. Stay tuned for updates! 💡
+              </p>
+            </div>
+          )}
         </section>
       )}
 
