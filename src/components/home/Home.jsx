@@ -1,38 +1,96 @@
-/* src/components/home/Home.jsx */
+import React, { useCallback } from 'react';
+  import { Link } from 'react-router-dom';
+  import { CometCard } from "@/components/ui/comet-card";
+  import { GooeyText } from '@/components/ui/gooey-text-morphing';
+  import InfosphereLogo from '../../assets/InfoLogo.png';
+  import ThreeDPhotoCarousel from "@/components/ui/3d-carousel"
+  import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+  import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+  import facultyImg1 from '../../assets/profiles/bhavyashree.jpg';
+  import facultyImg2 from '../../assets/profiles/ravi.jpg';
+  import facultyImg7 from '../../assets/profiles/ajay.jpg';
+  import vp from '../../assets/profiles/vp.jpg';
+  import js from '../../assets/profiles/jointsec.jpg';
+  import ss from '../../assets/profiles/sportssec.jpg';
+  import sh from '../../assets/profiles/sportshead.jpg';
+  import t from '../../assets/profiles/Treasurer.jpg';
+  import s from '../../assets/profiles/secretary.jpg';
+  import p from '../../assets/profiles/p.jpg';
+  import th from '../../assets/profiles/techhead.jpg';
+  import ch from '../../assets/profiles/culhead.jpg';
+  import raju from '../../assets/profiles/raju.jpg';
+  import pradImg from '../../assets/profiles/Prad.jpg';
+import rajathImg from '../../assets/profiles/Rajath.jpg';
+import vaibhavImg from '../../assets/profiles/Vaibhav.jpg';
+  // Club Images (Using your new filenames)
+  import sportsImg from '../../assets/clubs/sports.jpg';
+  import techImg from '../../assets/clubs/tech.jpg';
+  import culturalImg from '../../assets/clubs/cul.jpg';
+  import { motion } from "framer-motion";
+  // --- ADD THESE CAROUSEL IMPORTS ---
+  import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselPrevious,
+    CarouselNext,
+  } from "@/components/ui/carousel";
+  // --- COMPONENT IMPORTS ---
+  // ... (existing imports like GooeyText, ThreeDPhotoCarousel, CardContainer, etc.) ...
+  import {
+    Stories,
+    StoriesContent,
+    Story,
+    StoryImage,
+    StoryOverlay,
+    StoryTitle,
+  } from '@/components/ui/stories-carousel'; 
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { GooeyText } from '@/components/ui/gooey-text-morphing';
-import InfosphereLogo from '../../assets/InfoSphereLogo.png';
-import ThreeDPhotoCarousel from "@/components/ui/3d-carousel"
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import facultyImg1 from '../../assets/profiles/bhavyashree.jpg';
-import facultyImg2 from '../../assets/profiles/ravi.jpg';
-import facultyImg3 from '../../assets/profiles/amruth.jpg';
-import facultyImg4 from '../../assets/profiles/smithashree.jpg';
-import facultyImg5 from '../../assets/profiles/sangeetha.jpg';
-import facultyImg6 from '../../assets/profiles/thalivar.jpg';
-import vp from '../../assets/profiles/vp.jpg';
-import js from '../../assets/profiles/jointsec.jpg';
-import ss from '../../assets/profiles/sportssec.jpg';
-import sh from '../../assets/profiles/sportshead.jpg';
-import t from '../../assets/profiles/Treasurer.jpg';
-import s from '../../assets/profiles/secretary.jpg';
-import p from '../../assets/profiles/p.jpg';
-import th from '../../assets/profiles/techhead.jpg';
-import ch from '../../assets/profiles/culhead.jpg';
-// Club Images (Using your new filenames)
-import sportsImg from '../../assets/clubs/sports.jpg';
-import techImg from '../../assets/clubs/tech.jpg';
-import culturalImg from '../../assets/clubs/cul.jpg';
-import { motion } from "framer-motion";
+  import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+  //new faculty coordinators data
+  import amruthImg from '../../assets/profiles/amruth.jpg';
+  import sangeethaImg from '../../assets/profiles/sangeetha.jpg';
+  import smithashreeImg from '../../assets/profiles/smithashree.jpg';
+  import thalivarImg from '../../assets/profiles/thalivar.jpg';
+  import amithImg from '../../assets/profiles/amith.jpg';
+  import chaitraImg from '../../assets/profiles/chaitra.jpg';
+  import gaabhriImg from '../../assets/profiles/gaabhri.jpg';
+  import jkbImg from '../../assets/profiles/jkb.jpg';
+  import karthikImg from '../../assets/profiles/karthik.jpg';
+  import kgImg from '../../assets/profiles/kg.jpg';
+  import khasmiImg from '../../assets/profiles/khasmi.jpg';
+  import nithyaImg from '../../assets/profiles/nithya.jpg';
+  import omniImg from '../../assets/profiles/omni.jpg';
+  import pinkyImg from '../../assets/profiles/pinky.jpg';
+  import rajniImg from '../../assets/profiles/rajni.jpg';
+  import rakshithaImg from '../../assets/profiles/rakshitha.jpg';
+  import ranjuuImg from '../../assets/profiles/ranjuu.jpg';
+  import rohitImg from '../../assets/profiles/rohit.jpg';
+  import sarsaImg from '../../assets/profiles/sarsa.jpg';
+  import shootImg from '../../assets/profiles/shoot.jpg';
+  import sidduImg from '../../assets/profiles/siddu.jpg';
+  import sujayImg from '../../assets/profiles/sujay.jpg';
+  import varunImg from '../../assets/profiles/varun.jpg';
+
+const developerTeam = [
+  { name: "R Pradhyumna", designation: "Architecture + Backend", src: pradImg },
+  { name: "Rajath S", designation: "Frontend + UI", src: rajathImg },
+  { name: "Vaibhav M S", designation: "Frontend + UI", src: vaibhavImg },
+];
 
 const facultyCoordinators = [
   {
     quote:
+      "At Infosphere, we believe in nurturing curiosity and courage—because every great innovation begins with a bold idea.",
+    name: "Dr. Sharath Kumar YH",
+    designation: "Head of Department, ISE",
+    src: raju,
+  },
+  {
+    quote:
       "Empowering young innovators to shape tomorrow’s world—Infosphere is where ideas find their wings.",
-    name: "Prof. Bavyashree HD",
+    name: "Prof. Bhavyashree HD",
     designation: "Head Faculty Coordinator, Infosphere",
     src: facultyImg1,
   },
@@ -45,31 +103,10 @@ const facultyCoordinators = [
   },
   {
     quote:
-      "Innovation begins with curiosity. At Infosphere, we nurture that spark into brilliance.",
-    name: "Prof. Amruth V",
-    designation: "Faculty Coordinator, Infosphere",
-    src: facultyImg3,
-  },
-  {
-    quote:
-      "Technology is more than tools—it’s a mindset. Infosphere inspires students to think, build, and transform.",
-    name: "Prof. Smithashree KP",
-    designation: "Faculty Coordinator, Technical Club",
-    src: facultyImg4,
-  },
-  {
-    quote:
-      "Every great creation starts with a single idea. Infosphere helps students turn that idea into impact.",
-    name: "Prof. Sangeetha G",
-    designation: "Faculty Coordinator, Technical Club",
-    src: facultyImg5,
-  },
-  {
-    quote:
-      "Collaboration fuels innovation. Infosphere is where teamwork drives technological excellence.",
-    name: "Prof. Vijaykumar",
-    designation: "Faculty Coordinator, Technical Club",
-    src: facultyImg6,
+      "At Infosphere, creativity isn’t just encouraged—it’s engineered.",
+    name: "Prof. Ajay Kumar BR",
+    designation: "Head Faculty Coordinator, Infosphere",
+    src: facultyImg7,
   },
 ];
 
@@ -128,6 +165,33 @@ const coreCommittee = [
     designation: "Technical Head, Infosphere",
     src: th,
   },
+];
+
+// --- Department Faculty Data (with short quotes) ---
+const departmentFaculty = [
+  { name: "Dr. D Khasim Vali", designation: "Professor", src: khasmiImg, quote: "Shaping the future of tech." },
+  { name: "Dr. Sujay S", designation: "Assistant Professor", src: sujayImg, quote: "Bridging theory and practice." },
+  { name: "Prof. Saraswathi D", designation: "Assistant Professor", src: sarsaImg, quote: "Empowering students." }, // Placeholder name
+  { name: "Prof. Amruth V", designation: "Assistant Professor", src: amruthImg, quote: "Guiding future engineers." },
+  { name: "Prof. Smithashree KP", designation: "Assistant Professor", src: smithashreeImg, quote: "Inspiring innovation daily." },
+  { name: "Prof. Chaitrashree R", designation: "Assistant Professor", src: chaitraImg, quote: "Fostering learning." },
+  { name: "Prof. Siddaraj MG", designation: "Assistant Professor", src: sidduImg, quote: "Teaching core concepts." }, // Placeholder name
+  { name: "Prof. Chaitra KG", designation: "Assistant Professor", src: kgImg, quote: "Focusing on practical knowledge." },
+  { name: "Prof. Sangeetha G", designation: "Assistant Professor", src: sangeethaImg, quote: "Passionate about teaching." },
+  { name: "Prof. Vijay Kumar MS", designation: "Assistant Professor", src: thalivarImg, quote: "Dedicated to student success." },
+  { name: "Prof. Zuha Azmi", designation: "Assistant Professor", src: pinkyImg, quote: "Encouraging creativity." }, // Placeholder name
+  { name: "Prof. Amith S", designation: "Assistant Professor", src: amithImg, quote: "Exploring new technologies." },
+  { name: "Prof. Chandan KN", designation: "Assistant Professor", src: shootImg, quote: "Passionate about code." }, // Placeholder name
+  { name: "Prof. Rajinikanth G", designation: "Assistant Professor", src: rajniImg, quote: "Fostering student potential." },
+  { name: "Prof. Rohith Gowda KS", designation: "Assistant Professor", src: rohitImg, quote: "Exploring computer science." }, // Placeholder name
+  { name: "Prof. Ganavi NP", designation: "Assistant Professor", src: gaabhriImg, quote: "Building foundational skills." },
+  { name: "Prof. Sri Sai Gomini D M", designation: "Assistant Professor", src: omniImg, quote: "Innovating in education." }, // Placeholder name
+  { name: "Rakshitha NH", designation: "Teaching Assistant", src: rakshithaImg, quote: "Making complex topics clear." },
+  { name: "Varun AR", designation: "Teaching Assistant", src: varunImg, quote: "Supporting student growth" },
+  { name: "Ranjitha PV", designation: "Teaching Assistant", src: ranjuuImg, quote: "Dedicated to teaching." }, // Placeholder name
+  { name: "Karthik N", designation: "Lab Instructor", src: karthikImg, quote: "Inspiring practical knowledge." },
+  { name: "Nithyananda M", designation: "Lab Instructor", src: nithyaImg, quote: "Learning through experimentation." },
+  { name: "Gopal Krishna BV", designation: "Lab Instructor", src: jkbImg, quote: "Knowledge through practice."},
 ];
 
 // --- ANIMATION VARIANTS ---
@@ -244,22 +308,112 @@ function Home() {
             The driving force behind Infosphere, from our guiding faculty to our dedicated student leaders.
           </p>
 
-          <div className="mb-8 md:mb-20">
+          {/* Subsection 1: Faculty Coordinators */}
+          <div className="mb-16 md:mb-20">
+            <h3 className="text-3xl md:text-4xl font-semibold text-slate-800 mb-6 md:mb-12">
+              Core Faculty Coordinators
+            </h3>
+            {/* Adding quote: "" for safety */}
+            <AnimatedTestimonials testimonials={facultyCoordinators.map(fc => ({ ...fc, quote: fc.quote || "" }))} />
+          </div>
+
+          {/* Subsection 2: Core Committee */}
+          <div className="mb-16 md:mb-20">
+            <h3 className="text-3xl md:text-4xl font-semibold text-slate-800 mb-6 md:mb-12">
+              Core Committee
+            </h3>
+             {/* Adding quote: "" for safety */}
+            <AnimatedTestimonials testimonials={coreCommittee.map(cc => ({ ...cc, quote: cc.quote || "" }))} />
+          </div>
+
+          {/* --- NEW SECTION: Meet the Developers (using Comet Cards) --- */}
+          <section className="w-full py-16 md:py-24"> {/* Removed background gradient */}
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+                Meet the <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">Developers</span>
+              </h2>
+              <p className="text-lg text-slate-700 mb-16 max-w-2xl mx-auto"> {/* Increased bottom margin */}
+                The individuals who brought this website to life.
+              </p>
+
+              {/* Use flexbox to center the Comet Cards */}
+              <div className="flex flex-wrap justify-center items-start gap-8 md:gap-12 max-w-5xl mx-auto"> {/* Use items-start for alignment */}
+                {developerTeam.map((member, index) => (
+                  <CometCard key={index} className="w-auto"> {/* Let CometCard handle perspective */}
+                    {/* Content structure inside CometCard */}
+                    <div className="w-72 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700"> {/* Glassmorphism-like dark card */}
+                      <img
+                        src={member.src}
+                        alt={member.name}
+                        className="w-full h-80 object-cover object-center" // Adjust height as needed
+                      />
+                      <div className="p-4 text-white">
+                        <h3 className="text-lg font-bold truncate">{member.name}</h3>
+                        <p className="text-sm text-slate-300">{member.designation}</p>
+                      </div>
+                    </div>
+                  </CometCard>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* --- FINAL ALIGNED Subsection 3: Department Faculty (Stories Carousel) --- */}
+          <div>
             <h3 className="text-3xl md:text-4xl font-semibold text-slate-800 mb-6 md:mb-12">
               Faculty Coordinators
             </h3>
-            <AnimatedTestimonials testimonials={facultyCoordinators} />
-          </div>
+            {/* Main Carousel Wrapper */}
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-6xl mx-auto relative"
+            >
+              <CarouselContent className="-ml-4 py-4">
+                {departmentFaculty.map((faculty, index) => (
+                  <CarouselItem key={faculty.name + index} className="pl-4 basis-auto sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
+                    {/* --- Story Card: Added flex centering --- */}
+                    <Story className="relative w-[180px] md:w-[210px] aspect-square flex flex-col justify-center items-center rounded-2xl overflow-hidden shadow-lg group transition-transform duration-300 ease-in-out hover:scale-105"> {/* Added flex utils */}
+                       <StoryImage
+                        alt={faculty.name}
+                        src={faculty.src}
+                        // Use relative positioning and ensure it fills parent
+                        className="relative w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      />
+                      {/* Gradient Overlays (Positioned absolute relative to StoryImage/Story) */}
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-100 rounded-b-xl pointer-events-none transition-opacity duration-300 group-hover:opacity-90 z-10"></div>
+                      {/* Removed top gradient as text is only at bottom now */}
+                      {/* <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black/60 via-black/30 to-transparent opacity-90 rounded-t-xl pointer-events-none"></div> */}
 
-          <div>
-            <h3 className="text-3xl md:text-4xl font-semibold text-slate-800 mb-12">
-              Core Committee
-            </h3>
-            <AnimatedTestimonials testimonials={coreCommittee} />
-          </div>
+                      {/* Name & Designation (Stacked at Bottom) */}
+                      <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none z-20">
+                        <p className="text-sm font-semibold truncate mb-0.5">
+                           {faculty.name}
+                        </p>
+                        <p className="text-[11px] opacity-90 leading-tight">
+                           {faculty.designation}
+                        </p>
+                      </div>
+                    </Story>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
 
-        </div>
-      </section>
+              {/* Navigation Buttons */}
+              <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 left-0 md:-left-12 z-30 p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed hidden sm:flex items-center justify-center text-slate-800" />
+              <CarouselNext className="absolute top-1/2 -translate-y-1/2 right-0 md:-right-12 z-30 p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed hidden sm:flex items-center justify-center text-slate-800" />
+
+               {/* Mobile Buttons */}
+               <div className="flex justify-center mt-6 gap-4 sm:hidden z-30 relative">
+                    <CarouselPrevious className="relative static translate-y-0 left-auto p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-slate-800" />
+                    <CarouselNext className="relative static translate-y-0 right-auto p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-slate-800" />
+               </div>
+            </Carousel>
+          </div>
+        </div> {/* closes Section 3 container (container mx-auto px-4 text-center) */}
+      </section>  {/* closes Section 3 section */}
 
       {/* --- SECTION 4: CHOOSE YOUR PATH (3D CARDS) --- */}
       <section className="w-full py-16 md:py-24">

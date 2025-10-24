@@ -49,8 +49,8 @@ function Footer() {
           <ul className="space-y-2 text-sm text-slate-600 flex flex-col items-center md:items-start">
             <li className="flex items-center gap-2">
               <Mail size={16} />
-              <a href="mailto:infosphere@mmit.edu.in" className="hover:text-brand-dark transition-colors">
-                infosphereISE@gmail.com
+              <a href="mailto:infosphereise@gmail.com" className="hover:text-brand-dark transition-colors">
+                infosphereise@gmail.com
               </a>
             </li>
             <li className="flex items-center gap-2">
@@ -64,10 +64,10 @@ function Footer() {
         <div>
           <h4 className="font-semibold text-slate-800 mb-3 text-center md:text-left">Follow Us</h4>
           <div className="flex justify-center md:justify-start space-x-5">
-            <a href="#" aria-label="Instagram" className="text-slate-500 hover:text-brand-dark transition-colors">
+            <a href="https://www.instagram.com/__infoenix__?igsh=MW94bzB5a3d2MjFrZA==" aria-label="Instagram" className="text-slate-500 hover:text-brand-dark transition-colors">
               <Instagram size={24} />
             </a>
-            <a href="#" aria-label="LinkedIn" className="text-slate-500 hover:text-brand-dark transition-colors">
+            <a href="https://www.linkedin.com/groups/13095143" aria-label="LinkedIn" className="text-slate-500 hover:text-brand-dark transition-colors">
               <Linkedin size={24} />
             </a>
           </div>

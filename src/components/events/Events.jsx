@@ -4,6 +4,7 @@ import { Timeline } from '@/components/ui/timeline';
 import EventTimelineCard from './EventTimelineCard';
 import Spinner from '../../pages/Spinner';
 import { motion } from 'framer-motion';
+import { WobbleCard } from "@/components/ui/wobble-card";
 
 // Helper function to format the date for the timeline title
 function formatEventDate(date) {
@@ -46,7 +47,7 @@ function EventsPage() {
   }
 
   const allEvents = [...ongoing, ...upcoming, ...completed]
-    .sort((a, b) => b.start.getTime() - a.start.getTime());
+  .sort((a, b) => a.start.getTime() - b.start.getTime());
 
   const timelineData = allEvents.map(event => ({
     title: (
@@ -93,10 +94,15 @@ function EventsPage() {
         {timelineData.length > 0 ? (
           <Timeline data={timelineData} />
         ) : (
-          <div className="text-center py-16 px-6 bg-slate-50 rounded-2xl border border-slate-200">
-            <p className="text-xl text-slate-500 italic">
-              No events scheduled at the moment. Check back soon! 📅
-            </p>
+          // If EMPTY, render this placeholder Wobble Card
+          <div className="flex justify-center mt-16"> {/* Centering wrapper with margin */}
+            <WobbleCard
+              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-lg flex items-center justify-center p-8" // Adjusted size and padding
+            >
+              <p className="text-xl text-slate-700 italic text-center leading-relaxed"> {/* Adjusted text style */}
+                No events scheduled at the moment. Check back soon for exciting updates!
+              </p>
+            </WobbleCard>
           </div>
         )}
       </section>

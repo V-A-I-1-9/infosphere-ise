@@ -25,7 +25,7 @@ function formatDate(dateString) {
 }
 
 function Cultural() {
-  const { isLoading, isError, error, events, team, achievements } =
+  const { isLoading, isError, error, events = [], team = [], achievements = [] } =
     useCulturalData(); // Use the correct hook
 
   if (isLoading) {
@@ -46,22 +46,30 @@ function Cultural() {
   // --- Hardcoded Coordinator Data ---
   const coordinatorsData = [
     {
-      id: 'faculty-coord', // Unique key
-      name: 'Prof. Smithashree KP', // <-- EDIT THIS NAME
-      role: 'Faculty Coordinator', // <-- EDIT THIS ROLE
-      photo: facultyImg1         // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg1)
+      id: 'faculty-coord',
+      type: 'faculty', // Added type
+      name: 'Prof. Smithashree KP',
+      role: 'Faculty Coordinator',
+      photo: facultyImg1
     },
     {
-      id: 'student-coord', // Unique key
-      name: 'Bhuvan HN',       // <-- EDIT THIS NAME
-      role: 'Cultural Head', // <-- EDIT THIS ROLE
-      photo: ch        // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg2)
+      id: 'student-coord',
+      type: 'student', // Added type
+      name: 'Bhuvan HN',
+      role: 'Cultural Head', // This implies student
+      photo: ch
     },
   ];
 
-  const members = team.filter(member =>
-    !(member.role || member.Role)?.toLowerCase().includes("coordinator")
+  // Keep the line defining members
+  const members = (team || []).filter(member =>
+    !(member.role || member.Role)?.toLowerCase().includes("coordinator") &&
+    !(member.role || member.Role)?.toLowerCase().includes("head") // Also exclude 'head'
   );
+
+  // Filter coordinators into separate arrays
+  const facultyCoordinators = coordinatorsData.filter(c => c.type === 'faculty');
+  const studentCoordinators = coordinatorsData.filter(c => c.type === 'student');
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
@@ -86,44 +94,79 @@ function Cultural() {
         Express • Perform • Inspire
       </motion.p>
 
-      {/* 2. Coordinators Section (Comet Cards) */}
-      <section className="my-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-          Our Coordinators
-        </h2>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-          {/* CHANGE THIS LINE: */}
-          {coordinatorsData.map((member) => { // <-- Use coordinatorsData instead of displayCoordinators
-            const key = member.id; // Use the hardcoded id
-            const name = member.name;
-            const role = member.role;
-            const photo = member.photo;
+      {/* --- SECTION 2a: Faculty Coordinators --- */}
+      {facultyCoordinators.length > 0 && (
+        <section className="my-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+            Faculty Coordinator(s)
+          </h2>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {facultyCoordinators.map((member) => {
+              const key = member.id;
+              const name = member.name;
+              const role = member.role;
+              const photo = member.photo;
 
-            return (
-              <CometCard key={key}>
-                <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
-                  <img
-                    src={photo} // Use the hardcoded photo
-                    alt={name}
-                    className="w-full h-3/4 object-cover object-center"
-                  />
-                  <div className="p-4 text-white">
-                    <h3 className="text-lg font-bold truncate">{name}</h3>
-                    <p className="text-sm text-slate-300">{role}</p>
+              return (
+                <CometCard key={key}>
+                  <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
+                    <img
+                      src={photo}
+                      alt={name}
+                      className="w-full h-3/4 object-cover object-center"
+                    />
+                    <div className="p-4 text-white">
+                      <h3 className="text-lg font-bold truncate">{name}</h3>
+                      <p className="text-sm text-slate-300">{role}</p>
+                    </div>
                   </div>
-                </div>
-              </CometCard>
-            );
-          })}
-        </div>
-      </section>
+                </CometCard>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* --- SECTION 2b: Student Coordinator(s) --- */}
+      {studentCoordinators.length > 0 && (
+        <section className="my-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+            Student Coordinator(s)
+          </h2>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {studentCoordinators.map((member) => {
+              const key = member.id;
+              const name = member.name;
+              const role = member.role;
+              const photo = member.photo;
+
+              return (
+                <CometCard key={key}>
+                  <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
+                    <img
+                      src={photo}
+                      alt={name}
+                      className="w-full h-3/4 object-cover object-center"
+                    />
+                    <div className="p-4 text-white">
+                      <h3 className="text-lg font-bold truncate">{name}</h3>
+                      <p className="text-sm text-slate-300">{role}</p>
+                    </div>
+                  </div>
+                </CometCard>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* 3. Events Section */}
-      {events.length > 0 ? (
-        <section className="my-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-            Performances & Events
-          </h2>
+      <section className="my-24">
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          Performances & Events
+        </h2>
+
+        {events && events.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {events.map((event, index) => {
               const key = event.file_id || event.File_ID || `event-${index}`;
@@ -146,26 +189,26 @@ function Cultural() {
               );
             })}
           </div>
-        </section>
-      ) : (
-        <section className="my-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-            Performances & Events
-          </h2>
-          <div className="text-center py-16 px-6 bg-slate-50 rounded-2xl border border-slate-200">
-            <p className="text-xl text-slate-500 italic">
-              No performances planned right now. Keep an eye out for upcoming shows! 🎭
-            </p>
+        ) : (
+          <div className="flex justify-center">
+            <WobbleCard
+              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
+            >
+              <p className="text-lg text-slate-600 italic text-center">
+                No performances planned right now. Keep an eye out for upcoming shows!
+              </p>
+            </WobbleCard>
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
       {/* 4. Achievements Section */}
-      {achievements.length > 0 && (
-        <section className="my-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-            Accolades & Achievements
-          </h2>
+      <section className="my-24">
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          Accolades & Achievements
+        </h2>
+
+        {achievements && achievements.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {achievements.map((ach, index) => {
               const key = ach.file_id || ach.File_ID || `ach-${index}`;
@@ -188,15 +231,26 @@ function Cultural() {
               );
             })}
           </div>
-        </section>
-      )}
+        ) : (
+          <div className="flex justify-center">
+            <WobbleCard
+              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
+            >
+              <p className="text-lg text-slate-600 italic text-center">
+                No cultural achievements recorded yet. The stage awaits!
+              </p>
+            </WobbleCard>
+          </div>
+        )}
+      </section>
 
       {/* 5. Team Members Section */}
-      {members.length > 0 && (
-        <section className="my-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-            Our Members
-          </h2>
+      <section className="my-24">
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          Our Members
+        </h2>
+
+        {members && members.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {members.map((member, index) => {
               const key = member.file_id || member.File_ID || `member-${index}`;
@@ -206,11 +260,11 @@ function Cultural() {
                   containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
                 >
                   <div className="w-full h-48 overflow-hidden rounded-t-3xl">
-                    <img src={member.photo_url || member.Photo_URL} alt={member.member_name || member.Member_Name} className="w-full h-full object-cover" />
+                    <img src={member.photo_url || member.Photo_URL || member.photo} alt={member.member_name || member.Member_Name || member.name} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
-                    <h3 className="text-xl font-bold text-slate-900 leading-tight">{member.member_name || member.Member_Name}</h3>
-                    <p className="font-semibold text-brand-dark mt-1">{member.category || member.Category}</p> {/* Cultural uses Category */}
+                    <h3 className="text-xl font-bold text-slate-900 leading-tight">{member.member_name || member.Member_Name || member.name}</h3>
+                    <p className="font-semibold text-brand-dark mt-1">{member.category || member.Category}</p>
                     <p className="text-sm text-slate-700 mt-2">{member.year || member.Year} Year</p>
                     <div className="flex items-center gap-4 mt-4 text-sm">
                       {(member.contact_email || member.Contact_Email) && (
@@ -218,7 +272,7 @@ function Cultural() {
                           <Mail size={14} /> Email
                         </a>
                       )}
-                      {(member.contact_phone || member.Contact_Phone) && ( // Cultural uses Phone
+                      {(member.contact_phone || member.Contact_Phone) && (
                         <span className="flex items-center gap-1.5 text-slate-800">
                           <Phone size={14} /> {member.contact_phone || member.Contact_Phone}
                         </span>
@@ -229,8 +283,18 @@ function Cultural() {
               );
             })}
           </div>
-        </section>
-      )}
+        ) : (
+          <div className="flex justify-center">
+            <WobbleCard
+              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
+            >
+              <p className="text-lg text-slate-600 italic text-center">
+                Our cultural team list is coming soon. Stay tuned for talent!
+              </p>
+            </WobbleCard>
+          </div>
+        )}
+      </section>
 
     </div>
   );

@@ -47,28 +47,37 @@ function Technical() {
   // --- Hardcoded Coordinator Data ---
   const coordinatorsData = [
     {
-      id: 'faculty-coord', // Unique key
-      name: 'Prof. Sangeetha', // <-- EDIT THIS NAME
-      role: 'Faculty Coordinator', // <-- EDIT THIS ROLE
-      photo: facultyImg1         // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg1)
+      id: 'faculty-coord',
+      type: 'faculty', // Added type
+      name: 'Prof. Sangeetha',
+      role: 'Faculty Coordinator',
+      photo: facultyImg1
     },
     {
-      id: 'faculty2-coord', // Unique key
-      name: 'Prof. Vijaykumar',       // <-- EDIT THIS NAME
-      role: 'Faculty Coordinator', // <-- EDIT THIS ROLE
-      photo: facultyImg2        // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., facultyImg2)
+      id: 'faculty2-coord',
+      type: 'faculty', // Added type
+      name: 'Prof. Vijaykumar',
+      role: 'Faculty Coordinator',
+      photo: facultyImg2
     },
     {
-      id: 'student-coord', // Unique key
-      name: 'Sonashree MS',       // <-- EDIT THIS NAME
-      role: 'Technical Head', // <-- EDIT THIS ROLE
-      photo: th        // <-- EDIT THIS IMAGE IMPORT VARIABLE (e.g., studentImg2)
+      id: 'student-coord',
+      type: 'student', // Added type
+      name: 'Sonashree MS',
+      role: 'Technical Head', // This role implies student
+      photo: th
     },
   ];
-
+  // Keep the line defining members
   const members = team.filter(member =>
-    !(member.role || member.Role)?.toLowerCase().includes("coordinator")
+    !(member.role || member.Role)?.toLowerCase().includes("coordinator") &&
+    !(member.role || member.Role)?.toLowerCase().includes("head") // Also exclude 'head' roles if they are considered coordinators
   );
+
+  // Filter coordinators into separate arrays
+  const facultyCoordinators = coordinatorsData.filter(c => c.type === 'faculty');
+  const studentCoordinators = coordinatorsData.filter(c => c.type === 'student');
+
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
@@ -93,44 +102,78 @@ function Technical() {
         Innovate • Build • Code
       </motion.p>
 
-      {/* 2. Coordinators Section (Comet Cards) */}
-      <section className="my-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-          Our Coordinators
-        </h2>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-          {/* CHANGE THIS LINE: */}
-          {coordinatorsData.map((member) => { // <-- Use coordinatorsData instead of displayCoordinators
-            const key = member.id; // Use the hardcoded id
-            const name = member.name;
-            const role = member.role;
-            const photo = member.photo;
-
-            return (
-              <CometCard key={key}>
-                <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
-                  <img
-                    src={photo} // Use the hardcoded photo
-                    alt={name}
-                    className="w-full h-3/4 object-cover object-center"
-                  />
-                  <div className="p-4 text-white">
-                    <h3 className="text-lg font-bold truncate">{name}</h3>
-                    <p className="text-sm text-slate-300">{role}</p>
-                  </div>
-                </div>
-              </CometCard>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 3. Projects Section (Unique to Technical) */}
-      {projects.length > 0 && (
-        <section className="my-24">
+      {/* --- SECTION 2a: Faculty Coordinators --- */}
+      {facultyCoordinators.length > 0 && (
+        <section className="my-16">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-            Our Projects
+            Faculty Coordinator(s)
           </h2>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {facultyCoordinators.map((member) => { // Map over filtered faculty
+              const key = member.id;
+              const name = member.name;
+              const role = member.role;
+              const photo = member.photo;
+
+              return (
+                <CometCard key={key}>
+                  <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
+                    <img
+                      src={photo}
+                      alt={name}
+                      className="w-full h-3/4 object-cover object-center"
+                    />
+                    <div className="p-4 text-white">
+                      <h3 className="text-lg font-bold truncate">{name}</h3>
+                      <p className="text-sm text-slate-300">{role}</p>
+                    </div>
+                  </div>
+                </CometCard>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* --- SECTION 2b: Student Coordinator(s) --- */}
+      {studentCoordinators.length > 0 && (
+        <section className="my-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+            Student Coordinator(s)
+          </h2>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {studentCoordinators.map((member) => { // Map over filtered students
+              const key = member.id;
+              const name = member.name;
+              const role = member.role;
+              const photo = member.photo;
+
+              return (
+                <CometCard key={key}>
+                  <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
+                    <img
+                      src={photo}
+                      alt={name}
+                      className="w-full h-3/4 object-cover object-center"
+                    />
+                    <div className="p-4 text-white">
+                      <h3 className="text-lg font-bold truncate">{name}</h3>
+                      <p className="text-sm text-slate-300">{role}</p>
+                    </div>
+                  </div>
+                </CometCard>
+              );
+            })}
+          </div>
+        </section>
+      )}
+      {/* 3. Projects Section (Unique to Technical) */}
+      <section className="my-24">
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          Our Projects
+        </h2>
+
+        {projects && projects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {projects.map((project, index) => {
               const key = project.file_id || project.File_ID || `project-${index}`;
@@ -156,7 +199,6 @@ function Technical() {
                     <p className="text-sm text-slate-700 mt-2 flex-grow">
                       <span className="font-semibold">Tech Stack:</span> {project.technology_stack || project.Technology_Stack}
                     </p>
-                    {/* Links at the bottom */}
                     <div className="flex items-center gap-4 mt-4">
                       {(project.github_url || project.GitHub_URL) && (
                         <a href={project.github_url || project.GitHub_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-blue-700 hover:underline">
@@ -174,55 +216,68 @@ function Technical() {
               );
             })}
           </div>
-        </section>
-      )}
+        ) : (
+          <div className="flex justify-center">
+            <WobbleCard
+              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
+            >
+              <p className="text-lg text-slate-600 italic text-center">
+                Exciting new projects are in the works! Check back soon.
+              </p>
+            </WobbleCard>
+          </div>
+        )}
+      </section>
 
       {/* 4. Events Section */}
-      {events.length > 0 && (
-        <section className="my-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-            Workshops & Events
-          </h2>
+      <section className="my-24">
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          Workshops & Events
+        </h2>
 
-          {events.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-              {events.map((event, index) => {
-                const key = event.file_id || event.File_ID || `event-${index}`;
-                return (
-                  <WobbleCard
-                    key={key}
-                    containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
-                  >
-                    <div className="w-full h-48 overflow-hidden rounded-t-3xl">
-                      <img src={event.file_url || event.File_URL} alt={event.event_name || event.Event_Name} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="p-5">
-                      <h3 className="text-xl font-bold text-slate-900 leading-tight">{event.event_name || event.Event_Name}</h3>
-                      <p className="font-semibold text-brand-dark mt-1">{event.event_type || event.Event_Type}</p>
-                      <p className="text-sm text-slate-700 mt-3">{formatDate(event.event_date || event.Event_Date)}</p>
-                      <p className="text-sm text-slate-700"><span className="font-semibold">Topic:</span> {event.topic_technology || event.Topic_Technology}</p>
-                      <p className="text-sm text-slate-700"><span className="font-semibold">By:</span> {event.speaker_instructor || event.Speaker_Instructor}</p>
-                    </div>
-                  </WobbleCard>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="text-center py-16 px-6 bg-slate-50 rounded-2xl border border-slate-200">
-              <p className="text-xl text-slate-500 italic">
-                No technical events available right now. Stay tuned for updates! 💡
+        {events && events.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            {events.map((event, index) => {
+              const key = event.file_id || event.File_ID || `event-${index}`;
+              return (
+                <WobbleCard
+                  key={key}
+                  containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
+                >
+                  <div className="w-full h-48 overflow-hidden rounded-t-3xl">
+                    <img src={event.file_url || event.File_URL} alt={event.event_name || event.Event_Name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-xl font-bold text-slate-900 leading-tight">{event.event_name || event.Event_Name}</h3>
+                    <p className="font-semibold text-brand-dark mt-1">{event.event_type || event.Event_Type}</p>
+                    <p className="text-sm text-slate-700 mt-3">{formatDate(event.event_date || event.Event_Date)}</p>
+                    <p className="text-sm text-slate-700"><span className="font-semibold">Topic:</span> {event.topic_technology || event.Topic_Technology}</p>
+                    <p className="text-sm text-slate-700"><span className="font-semibold">By:</span> {event.speaker_instructor || event.Speaker_Instructor}</p>
+                  </div>
+                </WobbleCard>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="flex justify-center">
+            <WobbleCard
+              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
+            >
+              <p className="text-lg text-slate-600 italic text-center">
+                No technical events scheduled currently. Stay tuned for updates!
               </p>
-            </div>
-          )}
-        </section>
-      )}
+            </WobbleCard>
+          </div>
+        )}
+      </section>
 
       {/* 5. Team Members Section */}
-      {members.length > 0 && (
-        <section className="my-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
-            Our Members
-          </h2>
+      <section className="my-24">
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          Our Members
+        </h2>
+
+        {members && members.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {members.map((member, index) => {
               const key = member.file_id || member.File_ID || `member-${index}`;
@@ -260,8 +315,18 @@ function Technical() {
               );
             })}
           </div>
-        </section>
-      )}
+        ) : (
+          <div className="flex justify-center">
+            <WobbleCard
+              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
+            >
+              <p className="text-lg text-slate-600 italic text-center">
+                Member list is currently being updated. Come back soon!
+              </p>
+            </WobbleCard>
+          </div>
+        )}
+      </section>
 
     </div>
   );
