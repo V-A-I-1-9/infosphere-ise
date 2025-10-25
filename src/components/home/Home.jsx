@@ -74,9 +74,9 @@ import vaibhavImg from '../../assets/profiles/Vaibhav.jpg';
   import varunImg from '../../assets/profiles/varun.jpg';
 
 const developerTeam = [
-  { name: "Vaibhav M S", designation: "Frontend + UI", src: vaibhavImg },
-  { name: "R Pradhyumna", designation: "Architecture + Backend", src: pradImg },
-  { name: "Rajath S", designation: "Frontend + UI", src: rajathImg },
+  { name: "R Pradhyumna", designation: "Backend Development + System Architechture", src: pradImg },
+  { name: "Rajath S", designation: "Layout Design + Structure Planning", src: rajathImg },
+  { name: "Vaibhav M S", designation: "UI/UX Design + Frontend Development", src: vaibhavImg },
 ];
 
 const facultyCoordinators = [
@@ -294,38 +294,6 @@ function Home() {
         </div>
       </section>
 
-      {/* --- NEW SECTION: Meet the Developers (using Comet Cards) --- */}
-          <section className="w-full py-16 md:py-24"> {/* Removed background gradient */}
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-                Meet the <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">Developers</span>
-              </h2>
-              <p className="text-lg text-slate-700 mb-16 max-w-2xl mx-auto"> {/* Increased bottom margin */}
-                The individuals who brought this website to life.
-              </p>
-
-              {/* Use flexbox to center the Comet Cards */}
-              <div className="flex flex-wrap justify-center items-start gap-8 md:gap-12 max-w-5xl mx-auto"> {/* Use items-start for alignment */}
-                {developerTeam.map((member, index) => (
-                  <CometCard key={index} className="w-auto"> {/* Let CometCard handle perspective */}
-                    {/* Content structure inside CometCard */}
-                    <div className="w-72 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700"> {/* Glassmorphism-like dark card */}
-                      <img
-                        src={member.src}
-                        alt={member.name}
-                        className="w-full h-80 object-cover object-center" // Adjust height as needed
-                      />
-                      <div className="p-4 text-white">
-                        <h3 className="text-lg font-bold truncate">{member.name}</h3>
-                        <p className="text-sm text-slate-300">{member.designation}</p>
-                      </div>
-                    </div>
-                  </CometCard>
-                ))}
-              </div>
-            </div>
-          </section>
-
       {/* --- SECTION 3: MEET THE TEAM --- */}
       <section className="w-full py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
@@ -415,6 +383,38 @@ function Home() {
           </div>
         </div> {/* closes Section 3 container (container mx-auto px-4 text-center) */}
       </section>  {/* closes Section 3 section */}
+
+      {/* --- NEW SECTION: Meet the Developers (using Comet Cards) --- */}
+          <section className="w-full py-16 md:py-24"> {/* Removed background gradient */}
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+                Meet the <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">Developers</span>
+              </h2>
+              <p className="text-lg text-slate-700 mb-16 max-w-2xl mx-auto"> {/* Increased bottom margin */}
+                The individuals who brought this website to life.
+              </p>
+
+              {/* Use flexbox to center the Comet Cards */}
+              <div className="flex flex-wrap justify-center items-start gap-8 md:gap-12 max-w-5xl mx-auto"> {/* Use items-start for alignment */}
+                {developerTeam.map((member, index) => (
+                  <CometCard key={index} className="w-auto"> {/* Let CometCard handle perspective */}
+                    {/* Content structure inside CometCard */}
+                    <div className="w-72 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700"> {/* Glassmorphism-like dark card */}
+                      <img
+                        src={member.src}
+                        alt={member.name}
+                        className="w-full h-80 object-cover object-center" // Adjust height as needed
+                      />
+                      <div className="p-4 text-white">
+                        <h3 className="text-lg font-bold truncate">{member.name}</h3>
+                        <p className="text-sm text-slate-300">{member.designation}</p>
+                      </div>
+                    </div>
+                  </CometCard>
+                ))}
+              </div>
+            </div>
+          </section>
 
       {/* --- SECTION 4: CHOOSE YOUR PATH (3D CARDS) --- */}
       <section className="w-full py-16 md:py-24">
