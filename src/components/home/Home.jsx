@@ -1,77 +1,77 @@
 import React, { useCallback } from 'react';
-  import { Link } from 'react-router-dom';
-  import { CometCard } from "@/components/ui/comet-card";
-  import { GooeyText } from '@/components/ui/gooey-text-morphing';
-  import InfosphereLogo from '../../assets/InfoLogo.png';
-  import ThreeDPhotoCarousel from "@/components/ui/3d-carousel"
-  import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
-  import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-  import facultyImg1 from '../../assets/profiles/bhavyashree.jpg';
-  import facultyImg2 from '../../assets/profiles/ravi.jpg';
-  import facultyImg7 from '../../assets/profiles/ajay.jpg';
-  import vp from '../../assets/profiles/vp.jpg';
-  import js from '../../assets/profiles/jointsec.jpg';
-  import ss from '../../assets/profiles/sportssec.jpg';
-  import sh from '../../assets/profiles/sportshead.jpg';
-  import t from '../../assets/profiles/Treasurer.jpg';
-  import s from '../../assets/profiles/secretary.jpg';
-  import p from '../../assets/profiles/p.jpg';
-  import th from '../../assets/profiles/techhead.jpg';
-  import ch from '../../assets/profiles/culhead.jpg';
-  import raju from '../../assets/profiles/raju.jpg';
-  import pradImg from '../../assets/profiles/Prad.jpg';
-import rajathImg from '../../assets/profiles/Rajath.jpg';
-import vaibhavImg from '../../assets/profiles/Vaibhav.jpg';
-  // Club Images (Using your new filenames)
-  import sportsImg from '../../assets/clubs/sports.jpg';
-  import techImg from '../../assets/clubs/tech.jpg';
-  import culturalImg from '../../assets/clubs/cul.jpg';
-  import { motion } from "framer-motion";
-  // --- ADD THESE CAROUSEL IMPORTS ---
-  import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselPrevious,
-    CarouselNext,
-  } from "@/components/ui/carousel";
-  // --- COMPONENT IMPORTS ---
-  // ... (existing imports like GooeyText, ThreeDPhotoCarousel, CardContainer, etc.) ...
-  import {
-    Stories,
-    StoriesContent,
-    Story,
-    StoryImage,
-    StoryOverlay,
-    StoryTitle,
-  } from '@/components/ui/stories-carousel'; 
+import { Link } from 'react-router-dom';
+import { CometCard } from "@/components/ui/comet-card";
+import { GooeyText } from '@/components/ui/gooey-text-morphing';
+import InfosphereLogo from '../../assets/InfoLogo.webp';
+import ThreeDPhotoCarousel from "@/components/ui/3d-carousel"
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import facultyImg1 from '../../assets/profiles/bhavyashree.webp';
+import facultyImg2 from '../../assets/profiles/ravi.webp';
+import facultyImg7 from '../../assets/profiles/ajay.webp';
+import vp from '../../assets/profiles/vp.webp';
+import js from '../../assets/profiles/jointsec.webp';
+import ss from '../../assets/profiles/sportssec.webp';
+import sh from '../../assets/profiles/sportshead.webp';
+import t from '../../assets/profiles/Treasurer.webp';
+import s from '../../assets/profiles/secretary.webp';
+import p from '../../assets/profiles/p.webp';
+import th from '../../assets/profiles/techhead.webp';
+import ch from '../../assets/profiles/culhead.webp';
+import raju from '../../assets/profiles/raju.webp';
+import pradImg from '../../assets/profiles/Prad.webp';
+import rajathImg from '../../assets/profiles/Rajath.webp';
+import vaibhavImg from '../../assets/profiles/Vaibhav.webp';
+// Club Images (Using your new filenames)
+import sportsImg from '../../assets/clubs/sports.webp';
+import techImg from '../../assets/clubs/tech.webp';
+import culturalImg from '../../assets/clubs/cul.webp';
+import { motion } from "framer-motion";
+// --- ADD THESE CAROUSEL IMPORTS ---
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
+// --- COMPONENT IMPORTS ---
+// ... (existing imports like GooeyText, ThreeDPhotoCarousel, CardContainer, etc.) ...
+import {
+  Stories,
+  StoriesContent,
+  Story,
+  StoryImage,
+  StoryOverlay,
+  StoryTitle,
+} from '@/components/ui/stories-carousel';
 
-  import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-  //new faculty coordinators data
-  import amruthImg from '../../assets/profiles/amruth.jpg';
-  import sangeethaImg from '../../assets/profiles/sangeetha.jpg';
-  import smithashreeImg from '../../assets/profiles/smithashree.jpg';
-  import thalivarImg from '../../assets/profiles/thalivar.jpg';
-  import amithImg from '../../assets/profiles/amith.jpg';
-  import chaitraImg from '../../assets/profiles/chaitra.jpg';
-  import gaabhriImg from '../../assets/profiles/gaabhri.jpg';
-  import jkbImg from '../../assets/profiles/jkb.jpg';
-  import karthikImg from '../../assets/profiles/karthik.jpg';
-  import kgImg from '../../assets/profiles/kg.jpg';
-  import khasmiImg from '../../assets/profiles/khasmi.jpg';
-  import nithyaImg from '../../assets/profiles/nithya.jpg';
-  import omniImg from '../../assets/profiles/omni.jpg';
-  import pinkyImg from '../../assets/profiles/pinky.jpg';
-  import rajniImg from '../../assets/profiles/rajni.jpg';
-  import rakshithaImg from '../../assets/profiles/rakshitha.jpg';
-  import ranjuuImg from '../../assets/profiles/ranjuu.jpg';
-  import rohitImg from '../../assets/profiles/rohit.jpg';
-  import sarsaImg from '../../assets/profiles/sarsa.jpg';
-  import shootImg from '../../assets/profiles/shoot.jpg';
-  import sidduImg from '../../assets/profiles/siddu.jpg';
-  import sujayImg from '../../assets/profiles/sujay.jpg';
-  import varunImg from '../../assets/profiles/varun.jpg';
+//new faculty coordinators data
+import amruthImg from '../../assets/profiles/amruth.webp';
+import sangeethaImg from '../../assets/profiles/sangeetha.webp';
+import smithashreeImg from '../../assets/profiles/smithashree.webp';
+import thalivarImg from '../../assets/profiles/thalivar.webp';
+import amithImg from '../../assets/profiles/amith.webp';
+import chaitraImg from '../../assets/profiles/chaitra.webp';
+import gaabhriImg from '../../assets/profiles/gaabhri.webp';
+import jkbImg from '../../assets/profiles/jkb.webp';
+import karthikImg from '../../assets/profiles/karthik.webp';
+import kgImg from '../../assets/profiles/kg.webp';
+import khasmiImg from '../../assets/profiles/khasmi.webp';
+import nithyaImg from '../../assets/profiles/nithya.webp';
+import omniImg from '../../assets/profiles/omni.webp';
+import pinkyImg from '../../assets/profiles/pinky.webp';
+import rajniImg from '../../assets/profiles/rajni.webp';
+import rakshithaImg from '../../assets/profiles/rakshitha.webp';
+import ranjuuImg from '../../assets/profiles/ranjuu.webp';
+import rohitImg from '../../assets/profiles/rohit.webp';
+import sarsaImg from '../../assets/profiles/sarsa.webp';
+import shootImg from '../../assets/profiles/shoot.webp';
+import sidduImg from '../../assets/profiles/siddu.webp';
+import sujayImg from '../../assets/profiles/sujay.webp';
+import varunImg from '../../assets/profiles/varun.webp';
 
 const developerTeam = [
   { name: "R Pradhyumna", designation: "Backend Development + System Architechture", src: pradImg },
@@ -191,7 +191,7 @@ const departmentFaculty = [
   { name: "Ranjitha PV", designation: "Teaching Assistant", src: ranjuuImg, quote: "Dedicated to teaching." }, // Placeholder name
   { name: "Karthik N", designation: "Lab Instructor", src: karthikImg, quote: "Inspiring practical knowledge." },
   { name: "Nithyananda M", designation: "Lab Instructor", src: nithyaImg, quote: "Learning through experimentation." },
-  { name: "Gopal Krishna BV", designation: "Lab Instructor", src: jkbImg, quote: "Knowledge through practice."},
+  { name: "Gopal Krishna BV", designation: "Lab Instructor", src: jkbImg, quote: "Knowledge through practice." },
 ];
 
 // --- ANIMATION VARIANTS ---
@@ -286,7 +286,7 @@ function Home() {
           {/* --- 8. Reduced max-width on desktop --- */}
           {/* Changed max-w-4xl to max-w-3xl */}
           <div className="w-full max-w-3xl mx-auto">
-             {/* Adjusted min-h to account for mobile buttons below */}
+            {/* Adjusted min-h to account for mobile buttons below */}
             <div className="min-h-[500px] md:min-h-[500px] flex flex-col justify-center space-y-4">
               <ThreeDPhotoCarousel />
             </div>
@@ -322,7 +322,7 @@ function Home() {
             <h3 className="text-3xl md:text-4xl font-semibold text-slate-800 mb-6 md:mb-12">
               Core Committee
             </h3>
-             {/* Adding quote: "" for safety */}
+            {/* Adding quote: "" for safety */}
             <AnimatedTestimonials testimonials={coreCommittee.map(cc => ({ ...cc, quote: cc.quote || "" }))} />
           </div>
 
@@ -345,7 +345,7 @@ function Home() {
                   <CarouselItem key={faculty.name + index} className="pl-4 basis-auto sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
                     {/* --- Story Card: Added flex centering --- */}
                     <Story className="relative w-[180px] md:w-[210px] aspect-square flex flex-col justify-center items-center rounded-2xl overflow-hidden shadow-lg group transition-transform duration-300 ease-in-out hover:scale-105"> {/* Added flex utils */}
-                       <StoryImage
+                      <StoryImage
                         alt={faculty.name}
                         src={faculty.src}
                         // Use relative positioning and ensure it fills parent
@@ -359,10 +359,10 @@ function Home() {
                       {/* Name & Designation (Stacked at Bottom) */}
                       <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none z-20">
                         <p className="text-sm font-semibold truncate mb-0.5">
-                           {faculty.name}
+                          {faculty.name}
                         </p>
                         <p className="text-[11px] opacity-90 leading-tight">
-                           {faculty.designation}
+                          {faculty.designation}
                         </p>
                       </div>
                     </Story>
@@ -374,47 +374,47 @@ function Home() {
               <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 left-0 md:-left-12 z-30 p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed hidden sm:flex items-center justify-center text-slate-800" />
               <CarouselNext className="absolute top-1/2 -translate-y-1/2 right-0 md:-right-12 z-30 p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed hidden sm:flex items-center justify-center text-slate-800" />
 
-               {/* Mobile Buttons */}
-               <div className="flex justify-center mt-6 gap-4 sm:hidden z-30 relative">
-                    <CarouselPrevious className="relative static translate-y-0 left-auto p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-slate-800" />
-                    <CarouselNext className="relative static translate-y-0 right-auto p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-slate-800" />
-               </div>
+              {/* Mobile Buttons */}
+              <div className="flex justify-center mt-6 gap-4 sm:hidden z-30 relative">
+                <CarouselPrevious className="relative static translate-y-0 left-auto p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-slate-800" />
+                <CarouselNext className="relative static translate-y-0 right-auto p-3 rounded-full bg-white/30 backdrop-blur-lg border border-white/20 shadow-md transition-all hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-slate-800" />
+              </div>
             </Carousel>
           </div>
         </div> {/* closes Section 3 container (container mx-auto px-4 text-center) */}
       </section>  {/* closes Section 3 section */}
 
       {/* --- NEW SECTION: Meet the Developers (using Comet Cards) --- */}
-          <section className="w-full py-16 md:py-24"> {/* Removed background gradient */}
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-                Meet the <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">Developers</span>
-              </h2>
-              <p className="text-lg text-slate-700 mb-16 max-w-2xl mx-auto"> {/* Increased bottom margin */}
-                The individuals who brought this website to life.
-              </p>
+      <section className="w-full py-16 md:py-24"> {/* Removed background gradient */}
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+            Meet the <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">Developers</span>
+          </h2>
+          <p className="text-lg text-slate-700 mb-16 max-w-2xl mx-auto"> {/* Increased bottom margin */}
+            The individuals who brought this website to life.
+          </p>
 
-              {/* Use flexbox to center the Comet Cards */}
-              <div className="flex flex-wrap justify-center items-start gap-8 md:gap-12 max-w-5xl mx-auto"> {/* Use items-start for alignment */}
-                {developerTeam.map((member, index) => (
-                  <CometCard key={index} className="w-auto"> {/* Let CometCard handle perspective */}
-                    {/* Content structure inside CometCard */}
-                    <div className="w-72 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700"> {/* Glassmorphism-like dark card */}
-                      <img
-                        src={member.src}
-                        alt={member.name}
-                        className="w-full h-80 object-cover object-center" // Adjust height as needed
-                      />
-                      <div className="p-4 text-white">
-                        <h3 className="text-lg font-bold truncate">{member.name}</h3>
-                        <p className="text-sm text-slate-300">{member.designation}</p>
-                      </div>
-                    </div>
-                  </CometCard>
-                ))}
-              </div>
-            </div>
-          </section>
+          {/* Use flexbox to center the Comet Cards */}
+          <div className="flex flex-wrap justify-center items-start gap-8 md:gap-12 max-w-5xl mx-auto"> {/* Use items-start for alignment */}
+            {developerTeam.map((member, index) => (
+              <CometCard key={index} className="w-auto"> {/* Let CometCard handle perspective */}
+                {/* Content structure inside CometCard */}
+                <div className="w-72 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700"> {/* Glassmorphism-like dark card */}
+                  <img
+                    src={member.src}
+                    alt={member.name}
+                    className="w-full h-80 object-cover object-center" // Adjust height as needed
+                  />
+                  <div className="p-4 text-white">
+                    <h3 className="text-lg font-bold truncate">{member.name}</h3>
+                    <p className="text-sm text-slate-300">{member.designation}</p>
+                  </div>
+                </div>
+              </CometCard>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* --- SECTION 4: CHOOSE YOUR PATH (3D CARDS) --- */}
       <section className="w-full py-16 md:py-24">
@@ -477,12 +477,12 @@ function Home() {
             </CardContainer>
 
             {/* --- CARD 2: TECHNICAL --- */}
-             <CardContainer
+            <CardContainer
               containerClassName="py-0"
               className="rounded-3xl overflow-hidden"
             >
               <CardBody className="relative group/card w-full h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50 hover:shadow-2xl hover:shadow-brand-primary/[0.2]">
-                 {/* Card Items remain the same */}
+                {/* Card Items remain the same */}
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"
@@ -494,7 +494,7 @@ function Home() {
                   translateZ="60"
                   className="text-slate-700 text-sm max-w-sm mt-2"
                 >
-                  Innovate • Build • Code 
+                  Innovate • Build • Code
                 </CardItem>
                 <CardItem translateZ="100" className="w-full mt-4">
                   <img
@@ -524,7 +524,7 @@ function Home() {
               className="rounded-3xl overflow-hidden"
             >
               <CardBody className="relative group/card w-full h-auto rounded-3xl p-6 border bg-white/60 backdrop-blur-lg border-slate-200/50 hover:shadow-2xl hover:shadow-brand-primary/[0.2]">
-                 {/* Card Items remain the same */}
+                {/* Card Items remain the same */}
                 <CardItem
                   translateZ="50"
                   className="text-2xl font-bold text-slate-900"

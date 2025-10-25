@@ -7,9 +7,9 @@ import { Mail, Linkedin, Github, Globe } from 'lucide-react'; // Added more icon
 import { motion } from 'framer-motion';
 
 // --- ASSET IMPORTS --- (Using the same placeholders)
-import facultyImg1 from '../../assets/profiles/sangeetha.jpg';
-import facultyImg2 from '../../assets/profiles/thalivar.jpg';
-import th from '../../assets/profiles/techhead.jpg';
+import facultyImg1 from '../../assets/profiles/sangeetha.webp';
+import facultyImg2 from '../../assets/profiles/thalivar.webp';
+import th from '../../assets/profiles/techhead.webp';
 
 // Helper function to format dates
 function formatDate(dateString) {
@@ -49,14 +49,14 @@ function Technical() {
     {
       id: 'faculty-coord',
       type: 'faculty', // Added type
-      name: 'Prof. Sangeetha',
+      name: 'Prof. Sangeetha G',
       role: 'Faculty Coordinator',
       photo: facultyImg1
     },
     {
       id: 'faculty2-coord',
       type: 'faculty', // Added type
-      name: 'Prof. Vijaykumar',
+      name: 'Prof. Vijay Kumar MS',
       role: 'Faculty Coordinator',
       photo: facultyImg2
     },

@@ -7,9 +7,9 @@ import { Mail } from 'lucide-react'; // Icons for team cards
 import { motion } from 'framer-motion';
 
 // --- ASSET IMPORTS --- (Ensure these are correct)
-import facultyImg1 from '../../assets/profiles/amruth.jpg';
-import ss from '../../assets/profiles/sportssec.jpg';
-import sh from '../../assets/profiles/sportshead.jpg';
+import facultyImg1 from '../../assets/profiles/amruth.webp';
+import ss from '../../assets/profiles/sportssec.webp';
+import sh from '../../assets/profiles/sportshead.webp';
 // ... Add other profile/club images if needed ...
 
 // Helper function to format dates, if they exist

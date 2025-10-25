@@ -7,8 +7,8 @@ import { Mail, Phone } from 'lucide-react'; // Icons for team cards
 import { motion } from 'framer-motion';
 
 // --- ASSET IMPORTS --- (Using the same placeholders)
-import facultyImg1 from '../../assets/profiles/smithashree.jpg';
-import ch from '../../assets/profiles/culhead.jpg';
+import facultyImg1 from '../../assets/profiles/smithashree.webp';
+import ch from '../../assets/profiles/culhead.webp';
 
 // Helper function to format dates
 function formatDate(dateString) {
