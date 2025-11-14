@@ -27,35 +27,35 @@ export function useEventsData() {
     queryFn: fetchEventsData,
     enabled: !!calendarUrl,
     staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes (NEW - was missing)
     retry: 3,
+    retryDelay: (attemptIndex) =>
+      Math.min(1000 * Math.pow(2, attemptIndex), 30000), // Exponential backoff
   });
 
   // useMemo ensures that we only re-process the data when rawData changes.
   // This is a crucial performance optimization.
-  const processedData = useMemo(
-    function processRawData() {
-      const defaultData = {
-        allEvents: [],
-        upcoming: [],
-        ongoing: [],
-        completed: [],
-        featured: [],
-      };
+  const processedData = useMemo(() => {
+    const defaultData = {
+      allEvents: [],
+      upcoming: [],
+      ongoing: [],
+      completed: [],
+      featured: [],
+    };
 
-      if (!rawData) {
-        return defaultData;
-      }
+    if (!rawData) {
+      return defaultData;
+    }
 
-      return {
-        allEvents: rawData.allEvents || [],
-        upcoming: rawData.upcoming || [],
-        ongoing: rawData.ongoing || [],
-        completed: rawData.completed || [],
-        featured: rawData.featured || [],
-      };
-    },
-    [rawData]
-  );
+    return {
+      allEvents: rawData.allEvents || [],
+      upcoming: rawData.upcoming || [],
+      ongoing: rawData.ongoing || [],
+      completed: rawData.completed || [],
+      featured: rawData.featured || [],
+    };
+  }, [rawData]);
 
   return {
     isLoading,

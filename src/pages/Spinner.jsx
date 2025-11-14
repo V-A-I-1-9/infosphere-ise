@@ -1,4 +1,3 @@
-import React from 'react';
 import { GooeyLoader } from "@/components/ui/loader-10"; // Import the new loader
 
 function Spinner() {

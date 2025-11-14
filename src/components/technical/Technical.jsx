@@ -1,15 +1,14 @@
-import React from 'react';
-import { useTechnicalData } from "../../hooks/useTechnicalData";
-import Spinner from '../../pages/Spinner';
 import { CometCard } from "@/components/ui/comet-card";
 import { WobbleCard } from "@/components/ui/wobble-card";
-import { Mail, Linkedin, Github, Globe } from 'lucide-react'; // Added more icons
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { Github, Globe, Linkedin, Mail } from "lucide-react"; // Added more icons
+import { useTechnicalData } from "../../hooks/useTechnicalData";
+import Spinner from "../../pages/Spinner";
 
 // --- ASSET IMPORTS --- (Using the same placeholders)
-import facultyImg1 from '../../assets/profiles/sangeetha.jpg';
-import facultyImg2 from '../../assets/profiles/thalivar.jpg';
-import th from '../../assets/profiles/techhead.jpg';
+import facultyImg1 from "../../assets/profiles/sangeetha.webp";
+import th from "../../assets/profiles/techhead.webp";
+import facultyImg2 from "../../assets/profiles/thalivar.webp";
 
 // Helper function to format dates
 function formatDate(dateString) {
@@ -35,9 +34,9 @@ function Technical() {
 
   if (isError) {
     return (
-      <div className="container mx-auto px-4 py-12 md:py-24 text-center">
+      <div className="container px-4 py-12 mx-auto text-center md:py-24">
         <h2 className="text-3xl font-bold text-red-600">Error Loading Data</h2>
-        <p className="text-slate-600 mt-4">
+        <p className="mt-4 text-slate-600">
           {error?.message || "An unexpected error occurred"}
         </p>
       </div>
@@ -47,54 +46,58 @@ function Technical() {
   // --- Hardcoded Coordinator Data ---
   const coordinatorsData = [
     {
-      id: 'faculty-coord',
-      type: 'faculty', // Added type
-      name: 'Prof. Sangeetha',
-      role: 'Faculty Coordinator',
-      photo: facultyImg1
+      id: "faculty-coord",
+      type: "faculty", // Added type
+      name: "Prof. Sangeetha",
+      role: "Faculty Coordinator",
+      photo: facultyImg1,
     },
     {
-      id: 'faculty2-coord',
-      type: 'faculty', // Added type
-      name: 'Prof. Vijaykumar',
-      role: 'Faculty Coordinator',
-      photo: facultyImg2
+      id: "faculty2-coord",
+      type: "faculty", // Added type
+      name: "Prof. Vijaykumar",
+      role: "Faculty Coordinator",
+      photo: facultyImg2,
     },
     {
-      id: 'student-coord',
-      type: 'student', // Added type
-      name: 'Sonashree MS',
-      role: 'Technical Head', // This role implies student
-      photo: th
+      id: "student-coord",
+      type: "student", // Added type
+      name: "Sonashree MS",
+      role: "Technical Head", // This role implies student
+      photo: th,
     },
   ];
   // Keep the line defining members
-  const members = team.filter(member =>
-    !(member.role || member.Role)?.toLowerCase().includes("coordinator") &&
-    !(member.role || member.Role)?.toLowerCase().includes("head") // Also exclude 'head' roles if they are considered coordinators
+  const members = team.filter(
+    (member) =>
+      !(member.role || member.Role)?.toLowerCase().includes("coordinator") &&
+      !(member.role || member.Role)?.toLowerCase().includes("head") // Also exclude 'head' roles if they are considered coordinators
   );
 
   // Filter coordinators into separate arrays
-  const facultyCoordinators = coordinatorsData.filter(c => c.type === 'faculty');
-  const studentCoordinators = coordinatorsData.filter(c => c.type === 'student');
-
+  const facultyCoordinators = coordinatorsData.filter(
+    (c) => c.type === "faculty"
+  );
+  const studentCoordinators = coordinatorsData.filter(
+    (c) => c.type === "student"
+  );
 
   return (
-    <div className="container mx-auto px-4 py-12 md:py-24">
-
+    <div className="container px-4 py-12 mx-auto md:py-24">
       {/* 1. Gradient Page Title (with animation) */}
       <motion.h1
-        className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 text-center"
+        className="mb-4 text-5xl font-bold text-center sm:text-6xl md:text-7xl text-slate-900"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-dark to-brand-light">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-brand-light">
           Technical
-        </span> Club
+        </span>{" "}
+        Club
       </motion.h1>
       <motion.p
-        className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto"
+        className="max-w-2xl mx-auto mb-12 text-lg text-center text-slate-600"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
@@ -105,11 +108,12 @@ function Technical() {
       {/* --- SECTION 2a: Faculty Coordinators --- */}
       {facultyCoordinators.length > 0 && (
         <section className="my-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          <h2 className="mb-12 text-4xl font-bold text-center md:text-5xl text-slate-900">
             Faculty Coordinator(s)
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {facultyCoordinators.map((member) => { // Map over filtered faculty
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            {facultyCoordinators.map((member) => {
+              // Map over filtered faculty
               const key = member.id;
               const name = member.name;
               const role = member.role;
@@ -117,11 +121,11 @@ function Technical() {
 
               return (
                 <CometCard key={key}>
-                  <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
+                  <div className="overflow-hidden border shadow-lg w-72 h-96 rounded-2xl bg-slate-900/80 backdrop-blur-sm border-slate-700">
                     <img
                       src={photo}
                       alt={name}
-                      className="w-full h-3/4 object-cover object-center"
+                      className="object-cover object-center w-full h-3/4"
                     />
                     <div className="p-4 text-white">
                       <h3 className="text-lg font-bold truncate">{name}</h3>
@@ -138,11 +142,12 @@ function Technical() {
       {/* --- SECTION 2b: Student Coordinator(s) --- */}
       {studentCoordinators.length > 0 && (
         <section className="my-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+          <h2 className="mb-12 text-4xl font-bold text-center md:text-5xl text-slate-900">
             Student Coordinator(s)
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {studentCoordinators.map((member) => { // Map over filtered students
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            {studentCoordinators.map((member) => {
+              // Map over filtered students
               const key = member.id;
               const name = member.name;
               const role = member.role;
@@ -150,11 +155,11 @@ function Technical() {
 
               return (
                 <CometCard key={key}>
-                  <div className="w-72 h-96 rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-sm shadow-lg border border-slate-700">
+                  <div className="overflow-hidden border shadow-lg w-72 h-96 rounded-2xl bg-slate-900/80 backdrop-blur-sm border-slate-700">
                     <img
                       src={photo}
                       alt={name}
-                      className="w-full h-3/4 object-cover object-center"
+                      className="object-cover object-center w-full h-3/4"
                     />
                     <div className="p-4 text-white">
                       <h3 className="text-lg font-bold truncate">{name}</h3>
@@ -169,14 +174,15 @@ function Technical() {
       )}
       {/* 3. Projects Section (Unique to Technical) */}
       <section className="my-24">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+        <h2 className="mb-12 text-4xl font-bold text-center md:text-5xl text-slate-900">
           Our Projects
         </h2>
 
         {projects && projects.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
             {projects.map((project, index) => {
-              const key = project.file_id || project.File_ID || `project-${index}`;
+              const key =
+                project.file_id || project.File_ID || `project-${index}`;
               return (
                 <WobbleCard
                   key={key}
@@ -186,27 +192,38 @@ function Technical() {
                     <img
                       src={project.file_url || project.File_URL}
                       alt={project.project_name || project.Project_Name}
-                      className="w-full h-full object-cover"
+                      className="object-cover w-full h-full"
                     />
                   </div>
-                  <div className="p-5 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-slate-900 leading-tight">
+                  <div className="flex flex-col flex-grow p-5">
+                    <h3 className="text-xl font-bold leading-tight text-slate-900">
                       {project.project_name || project.Project_Name}
                     </h3>
-                    <p className="font-semibold text-brand-dark mt-1">
+                    <p className="mt-1 font-semibold text-brand-dark">
                       {project.category || project.Category}
                     </p>
-                    <p className="text-sm text-slate-700 mt-2 flex-grow">
-                      <span className="font-semibold">Tech Stack:</span> {project.technology_stack || project.Technology_Stack}
+                    <p className="flex-grow mt-2 text-sm text-slate-700">
+                      <span className="font-semibold">Tech Stack:</span>{" "}
+                      {project.technology_stack || project.Technology_Stack}
                     </p>
                     <div className="flex items-center gap-4 mt-4">
                       {(project.github_url || project.GitHub_URL) && (
-                        <a href={project.github_url || project.GitHub_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-blue-700 hover:underline">
+                        <a
+                          href={project.github_url || project.GitHub_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-sm text-blue-700 hover:underline"
+                        >
                           <Github size={16} /> GitHub
                         </a>
                       )}
                       {(project.demo_url || project.Demo_URL) && (
-                        <a href={project.demo_url || project.Demo_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-green-700 hover:underline">
+                        <a
+                          href={project.demo_url || project.Demo_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-sm text-green-700 hover:underline"
+                        >
                           <Globe size={16} /> Live Demo
                         </a>
                       )}
@@ -218,10 +235,8 @@ function Technical() {
           </div>
         ) : (
           <div className="flex justify-center">
-            <WobbleCard
-              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
-            >
-              <p className="text-lg text-slate-600 italic text-center">
+            <WobbleCard containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6">
+              <p className="text-lg italic text-center text-slate-600">
                 Exciting new projects are in the works! Check back soon.
               </p>
             </WobbleCard>
@@ -231,12 +246,12 @@ function Technical() {
 
       {/* 4. Events Section */}
       <section className="my-24">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+        <h2 className="mb-12 text-4xl font-bold text-center md:text-5xl text-slate-900">
           Workshops & Events
         </h2>
 
         {events && events.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
             {events.map((event, index) => {
               const key = event.file_id || event.File_ID || `event-${index}`;
               return (
@@ -245,14 +260,30 @@ function Technical() {
                   containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
                 >
                   <div className="w-full h-48 overflow-hidden rounded-t-3xl">
-                    <img src={event.file_url || event.File_URL} alt={event.event_name || event.Event_Name} className="w-full h-full object-cover" />
+                    <img
+                      src={event.file_url || event.File_URL}
+                      alt={event.event_name || event.Event_Name}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                   <div className="p-5">
-                    <h3 className="text-xl font-bold text-slate-900 leading-tight">{event.event_name || event.Event_Name}</h3>
-                    <p className="font-semibold text-brand-dark mt-1">{event.event_type || event.Event_Type}</p>
-                    <p className="text-sm text-slate-700 mt-3">{formatDate(event.event_date || event.Event_Date)}</p>
-                    <p className="text-sm text-slate-700"><span className="font-semibold">Topic:</span> {event.topic_technology || event.Topic_Technology}</p>
-                    <p className="text-sm text-slate-700"><span className="font-semibold">By:</span> {event.speaker_instructor || event.Speaker_Instructor}</p>
+                    <h3 className="text-xl font-bold leading-tight text-slate-900">
+                      {event.event_name || event.Event_Name}
+                    </h3>
+                    <p className="mt-1 font-semibold text-brand-dark">
+                      {event.event_type || event.Event_Type}
+                    </p>
+                    <p className="mt-3 text-sm text-slate-700">
+                      {formatDate(event.event_date || event.Event_Date)}
+                    </p>
+                    <p className="text-sm text-slate-700">
+                      <span className="font-semibold">Topic:</span>{" "}
+                      {event.topic_technology || event.Topic_Technology}
+                    </p>
+                    <p className="text-sm text-slate-700">
+                      <span className="font-semibold">By:</span>{" "}
+                      {event.speaker_instructor || event.Speaker_Instructor}
+                    </p>
                   </div>
                 </WobbleCard>
               );
@@ -260,10 +291,8 @@ function Technical() {
           </div>
         ) : (
           <div className="flex justify-center">
-            <WobbleCard
-              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
-            >
-              <p className="text-lg text-slate-600 italic text-center">
+            <WobbleCard containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6">
+              <p className="text-lg italic text-center text-slate-600">
                 No technical events scheduled currently. Stay tuned for updates!
               </p>
             </WobbleCard>
@@ -273,12 +302,12 @@ function Technical() {
 
       {/* 5. Team Members Section */}
       <section className="my-24">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-12">
+        <h2 className="mb-12 text-4xl font-bold text-center md:text-5xl text-slate-900">
           Our Members
         </h2>
 
         {members && members.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
             {members.map((member, index) => {
               const key = member.file_id || member.File_ID || `member-${index}`;
               return (
@@ -287,25 +316,52 @@ function Technical() {
                   containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[420px] w-full max-w-sm"
                 >
                   <div className="w-full h-48 overflow-hidden rounded-t-3xl">
-                    <img src={member.photo_url || member.Photo_URL} alt={member.member_name || member.Member_Name} className="w-full h-full object-cover" />
+                    <img
+                      src={member.photo_url || member.Photo_URL}
+                      alt={member.member_name || member.Member_Name}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                   <div className="p-5">
-                    <h3 className="text-xl font-bold text-slate-900 leading-tight">{member.member_name || member.Member_Name}</h3>
-                    <p className="font-semibold text-brand-dark mt-1">{member.specialization || member.Specialization}</p>
-                    <p className="text-sm text-slate-700 mt-2">{member.year || member.Year} Year</p>
+                    <h3 className="text-xl font-bold leading-tight text-slate-900">
+                      {member.member_name || member.Member_Name}
+                    </h3>
+                    <p className="mt-1 font-semibold text-brand-dark">
+                      {member.specialization || member.Specialization}
+                    </p>
+                    <p className="mt-2 text-sm text-slate-700">
+                      {member.year || member.Year} Year
+                    </p>
                     <div className="flex items-center gap-4 mt-4 text-sm">
                       {(member.contact_email || member.Contact_Email) && (
-                        <a href={`mailto:${member.contact_email || member.Contact_Email}`} className="flex items-center gap-1.5 text-blue-700 hover:underline">
+                        <a
+                          href={`mailto:${
+                            member.contact_email || member.Contact_Email
+                          }`}
+                          className="flex items-center gap-1.5 text-blue-700 hover:underline"
+                        >
                           <Mail size={14} /> Email
                         </a>
                       )}
                       {(member.github_profile || member.GitHub_Profile) && (
-                        <a href={member.github_profile || member.GitHub_Profile} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-slate-800 hover:underline">
+                        <a
+                          href={member.github_profile || member.GitHub_Profile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-slate-800 hover:underline"
+                        >
                           <Github size={14} /> GitHub
                         </a>
                       )}
                       {(member.linkedin_profile || member.LinkedIn_Profile) && (
-                        <a href={member.linkedin_profile || member.LinkedIn_Profile} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-blue-800 hover:underline">
+                        <a
+                          href={
+                            member.linkedin_profile || member.LinkedIn_Profile
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-blue-800 hover:underline"
+                        >
                           <Linkedin size={14} /> LinkedIn
                         </a>
                       )}
@@ -317,17 +373,14 @@ function Technical() {
           </div>
         ) : (
           <div className="flex justify-center">
-            <WobbleCard
-              containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6"
-            >
-              <p className="text-lg text-slate-600 italic text-center">
+            <WobbleCard containerClassName="bg-white/60 backdrop-blur-lg border border-slate-200/50 rounded-3xl overflow-hidden min-h-[200px] w-full max-w-sm flex items-center justify-center p-6">
+              <p className="text-lg italic text-center text-slate-600">
                 Member list is currently being updated. Come back soon!
               </p>
             </WobbleCard>
           </div>
         )}
       </section>
-
     </div>
   );
 }

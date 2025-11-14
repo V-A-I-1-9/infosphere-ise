@@ -1,5 +1,11 @@
 /* src/App.css */
 
+/* Import only the font weights you need */
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+
 /* 1. Add the core Tailwind directives */
 @tailwind base;
 @tailwind components;
@@ -7,34 +13,41 @@
 
 /* 2. Define our NEW light theme base styles */
 body {
-  /* Set a base white background and dark text */
+  /* Set base white background, dark text, and Poppins font */
   @apply bg-white text-slate-900;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 .app-layout {
   min-height: 100vh;
   position: relative;
-  /* Allow the fixed gradient to be visible across the whole page */
   overflow: visible;
 }
 
-/* This is the pseudo-element that creates the moving gradient "aurora" */
+/* Optimized gradient - reduced complexity for better performance */
 .app-layout::before {
-  content: '';
-  /* Make the gradient fixed so it always covers the viewport while scrolling */
+  content: "";
   position: fixed;
   inset: 0;
-  pointer-events: none; /* don't block clicks/scroll */
-  /* The radial gradient starts from our brand color, fading to transparent */
-  /* We use a very low opacity (0.1) so it's a subtle spotlight */
-  background: radial-gradient(1500px circle at var(--x) var(--y), #4a80af, transparent 50%);
-  opacity: 0.5; /* Made this more subtle for a light background */
+  pointer-events: none;
+  /* Simplified gradient with lower opacity for better performance */
+  background: radial-gradient(
+    1200px circle at var(--x) var(--y),
+    #4a80af,
+    transparent 40%
+  );
+  opacity: 0.3; /* Reduced from 0.5 for better performance */
   will-change: transform;
-  z-index: 0; /* keep behind content (header/main/footer have z-index:1) */
+  z-index: 0;
+  /* Add GPU acceleration hint */
+  transform: translateZ(0);
 }
 
-/* 3. Ensure all content (header, main, footer) sits above the background effect */
-header, main, footer {
+/* 3. Ensure all content sits above the background effect */
+header,
+main,
+footer {
   position: relative;
   z-index: 1;
 }

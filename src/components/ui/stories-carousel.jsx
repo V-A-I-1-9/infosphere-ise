@@ -1,74 +1,63 @@
-'use client';;
-import { useEffect, useRef } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+"use client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem, 
-} from '@/components/ui/carousel';
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge"
+import { useEffect, useRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export const Stories = ({
-  className,
-  opts,
-  ...props
-}) => (
+export const Stories = ({ className, opts, ...props }) => (
   <Carousel
-    className={cn('w-full', className)}
+    className={cn("w-full", className)}
     opts={{
-      align: 'start',
+      align: "start",
       loop: false,
       dragFree: true,
       ...opts,
     }}
-    {...props} />
+    {...props}
+  />
 );
 
-export const StoriesContent = ({
-  className,
-  ...props
-}) => (
-  <CarouselContent className={cn('gap-2', className)} {...props} />
+export const StoriesContent = ({ className, ...props }) => (
+  <CarouselContent className={cn("gap-2", className)} {...props} />
 );
 
-export const Story = ({
-  className,
-  ...props
-}) => (
-  <CarouselItem className={cn('basis-auto !w-[200px] pl-2 md:pl-4', className)}>
+export const Story = ({ className, ...props }) => (
+  <CarouselItem className={cn("basis-auto !w-[200px] pl-2 md:pl-4", className)}>
     <div
       className={cn(
-        'group relative overflow-hidden rounded-xl bg-muted/40',
-        'cursor-pointer transition-all duration-200',
-        'hover:scale-[1.02] hover:shadow-lg',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        "group relative overflow-hidden rounded-xl bg-muted/40",
+        "cursor-pointer transition-all duration-200",
+        "hover:scale-[1.02] hover:shadow-lg",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         className
       )}
       role="button"
       tabIndex={0}
-      {...props} />
+      {...props}
+    />
   </CarouselItem>
 );
 
 const tRegex = /t=(\d+(?:\.\d+)?)/;
 
-export const StoryVideo = ({
-  className,
-  ...props
-}) => {
+export const StoryVideo = ({ className, ...props }) => {
   const videoRef = useRef(null);
   const initialTimeRef = useRef(0);
 
   useEffect(() => {
-    const src = (props.src ?? '');
+    const src = props.src ?? "";
     let initialTime = 0;
-    if (typeof src === 'string') {
-      const hashIndex = src.indexOf('#');
+    if (typeof src === "string") {
+      const hashIndex = src.indexOf("#");
       if (hashIndex !== -1) {
         const hash = src.slice(hashIndex + 1);
 
@@ -106,9 +95,9 @@ export const StoryVideo = ({
   return (
     <video
       className={cn(
-        'absolute inset-0 size-full object-cover',
-        'transition-opacity duration-200',
-        'group-hover:opacity-90',
+        "absolute inset-0 size-full object-cover",
+        "transition-opacity duration-200",
+        "group-hover:opacity-90",
         className
       )}
       loop
@@ -120,34 +109,33 @@ export const StoryVideo = ({
       preload="metadata"
       ref={videoRef}
       tabIndex={0}
-      {...props} />
+      {...props}
+    />
   );
 };
 
-export const StoryImage = ({
-  className,
-  alt,
-  ...props
-}) => (
+export const StoryImage = ({ className, alt, ...props }) => (
   <img
     alt={alt}
     className={cn(
-      'absolute inset-0 h-full w-full object-cover',
-      'transition-opacity duration-200',
-      'group-hover:opacity-90',
+      "absolute inset-0 h-full w-full object-cover",
+      "transition-opacity duration-200",
+      "group-hover:opacity-90",
       className
     )}
-    {...props} />
+    {...props}
+  />
 );
 
-export const StoryAuthor = ({
-  className,
-  children,
-  ...props
-}) => (
+export const StoryAuthor = ({ className, children, ...props }) => (
   <div
-    className={cn('absolute right-0 bottom-0 left-0 z-10', 'p-3 text-white', className)}
-    {...props}>
+    className={cn(
+      "absolute right-0 bottom-0 left-0 z-10",
+      "p-3 text-white",
+      className
+    )}
+    {...props}
+  >
     <div className="flex items-center gap-2">{children}</div>
   </div>
 );
@@ -159,45 +147,41 @@ export const StoryAuthorImage = ({
   className,
   ...props
 }) => (
-  <Avatar className={cn('size-6 border border-white/20', className)} {...props}>
+  <Avatar className={cn("size-6 border border-white/20", className)} {...props}>
     {src && <AvatarImage alt={name} src={src} />}
-    <AvatarFallback className='bg-white/10 text-white text-xs'>
+    <AvatarFallback className="text-xs text-white bg-white/10">
       {fallback || name?.charAt(0)?.toUpperCase()}
     </AvatarFallback>
   </Avatar>
 );
 
-export const StoryAuthorName = ({
-  className,
-  ...props
-}) => (
-  <span className={cn('truncate font-medium text-sm', className)} {...props} />
+export const StoryAuthorName = ({ className, ...props }) => (
+  <span className={cn("truncate font-medium text-sm", className)} {...props} />
 );
 
-export const StoryTitle = ({
-  className,
-  ...props
-}) => (
+export const StoryTitle = ({ className, ...props }) => (
   <div
-    className={cn('absolute top-0 right-0 left-0 z-10', 'p-3 text-white', className)}
-    {...props} />
+    className={cn(
+      "absolute top-0 right-0 left-0 z-10",
+      "p-3 text-white",
+      className
+    )}
+    {...props}
+  />
 );
 
-export const StoryOverlay = ({
-  className,
-  side = 'bottom',
-  ...props
-}) => {
+export const StoryOverlay = ({ className, side = "bottom", ...props }) => {
   const positionClasses =
-    side === 'top' ? 'top-0 bg-gradient-to-b' : 'bottom-0 bg-gradient-to-t';
+    side === "top" ? "top-0 bg-gradient-to-b" : "bottom-0 bg-gradient-to-t";
 
   return (
     <div
       className={cn(
-        'absolute right-0 left-0 h-10 from-black/20 to-transparent',
+        "absolute right-0 left-0 h-10 from-black/20 to-transparent",
         positionClasses,
         className
       )}
-      {...props} />
+      {...props}
+    />
   );
 };

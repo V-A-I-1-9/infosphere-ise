@@ -1,9 +1,8 @@
 /* src/components/ui/tubelight-navbar.jsx */
 
-import React from "react";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import { cn } from "@/lib/utils";
 
 export function NavBar({ items, className }) {
   return (
@@ -31,7 +30,7 @@ export function NavBar({ items, className }) {
                 cn(
                   "relative cursor-pointer text-sm font-medium px-4 py-2 rounded-full transition-colors",
                   /* --- COLOR CHANGES --- */
-                  "text-slate-600 hover:text-brand-dark", /* Dark text for inactive */
+                  "text-slate-600 hover:text-brand-dark" /* Dark text for inactive */,
                   isActive ? "text-brand-dark" : "" /* Dark text for active */
                 )
               }
@@ -42,7 +41,7 @@ export function NavBar({ items, className }) {
                   <span className="md:hidden">
                     <Icon size={20} strokeWidth={2} />
                   </span>
-                  
+
                   {isActive && (
                     <motion.div
                       layoutId="lamp"
@@ -54,11 +53,15 @@ export function NavBar({ items, className }) {
                         damping: 30,
                       }}
                       /* --- COLOR CHANGES --- */
-                      style={{ backgroundColor: 'rgba(14, 62, 104, 0.05)' }} /* Faint brand color glow */
+                      style={{
+                        backgroundColor: "rgba(14, 62, 104, 0.05)",
+                      }} /* Faint brand color glow */
                     >
-                      <div 
+                      <div
                         className="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-t-full"
-                        style={{ backgroundColor: '#0e3e68' }} /* Brand color lamp */
+                        style={{
+                          backgroundColor: "#0e3e68",
+                        }} /* Brand color lamp */
                       >
                         {/* Removed the extra blur divs as they don't show well on white */}
                       </div>
