@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
+import { useEffect, useRef } from "react";
+import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
 
 function AppLayout() {
   const layoutRef = useRef(null);
@@ -12,17 +12,17 @@ function AppLayout() {
       if (layoutRef.current) {
         // We update the CSS custom properties (--x, --y) with the mouse coordinates
         const { clientX, clientY } = e;
-        layoutRef.current.style.setProperty('--x', `${clientX}px`);
-        layoutRef.current.style.setProperty('--y', `${clientY}px`);
+        layoutRef.current.style.setProperty("--x", `${clientX}px`);
+        layoutRef.current.style.setProperty("--y", `${clientY}px`);
       }
     };
 
     // Add the event listener to the window
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
     // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -30,7 +30,9 @@ function AppLayout() {
     // We attach the ref and the className to the main container div
     <div ref={layoutRef} className="app-layout">
       <Header />
-      <main className="min-h-[calc(100vh-120px)]"> {/* Ensures footer is pushed down */}
+      <main className="min-h-[calc(100vh-120px)]">
+        {" "}
+        {/* Ensures footer is pushed down */}
         <Outlet />
       </main>
       <Footer />
