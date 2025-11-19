@@ -6,9 +6,15 @@ import { useSportsData } from "../../hooks/useSportsData";
 import Spinner from "../../pages/Spinner";
 
 // --- ASSET IMPORTS --- (Ensure these are correct)
+<<<<<<< HEAD
 import facultyImg1 from "../../assets/profiles/amruth.webp";
 import sh from "../../assets/profiles/sportshead.webp";
 import ss from "../../assets/profiles/sportssec.webp";
+=======
+import facultyImg1 from '../../assets/profiles/amruth.webp';
+import ss from '../../assets/profiles/sportssec.webp';
+import sh from '../../assets/profiles/sportshead.webp';
+>>>>>>> d43e06d0b640843be43ec865ec71f72a36efe5a1
 // ... Add other profile/club images if needed ...
 
 // Helper function to format dates, if they exist

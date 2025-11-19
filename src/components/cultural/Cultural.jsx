@@ -6,8 +6,13 @@ import { useCulturalData } from "../../hooks/useCulturalData"; // Use the correc
 import Spinner from "../../pages/Spinner";
 
 // --- ASSET IMPORTS --- (Using the same placeholders)
+<<<<<<< HEAD
 import ch from "../../assets/profiles/culhead.webp";
 import facultyImg1 from "../../assets/profiles/smithashree.webp";
+=======
+import facultyImg1 from '../../assets/profiles/smithashree.webp';
+import ch from '../../assets/profiles/culhead.webp';
+>>>>>>> d43e06d0b640843be43ec865ec71f72a36efe5a1
 
 // Helper function to format dates
 function formatDate(dateString) {

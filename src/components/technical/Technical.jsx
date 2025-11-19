@@ -6,9 +6,15 @@ import { useTechnicalData } from "../../hooks/useTechnicalData";
 import Spinner from "../../pages/Spinner";
 
 // --- ASSET IMPORTS --- (Using the same placeholders)
+<<<<<<< HEAD
 import facultyImg1 from "../../assets/profiles/sangeetha.webp";
 import th from "../../assets/profiles/techhead.webp";
 import facultyImg2 from "../../assets/profiles/thalivar.webp";
+=======
+import facultyImg1 from '../../assets/profiles/sangeetha.webp';
+import facultyImg2 from '../../assets/profiles/thalivar.webp';
+import th from '../../assets/profiles/techhead.webp';
+>>>>>>> d43e06d0b640843be43ec865ec71f72a36efe5a1
 
 // Helper function to format dates
 function formatDate(dateString) {
@@ -46,6 +52,7 @@ function Technical() {
   // --- Hardcoded Coordinator Data ---
   const coordinatorsData = [
     {
+<<<<<<< HEAD
       id: "faculty-coord",
       type: "faculty", // Added type
       name: "Prof. Sangeetha",
@@ -58,6 +65,20 @@ function Technical() {
       name: "Prof. Vijaykumar",
       role: "Faculty Coordinator",
       photo: facultyImg2,
+=======
+      id: 'faculty-coord',
+      type: 'faculty', // Added type
+      name: 'Prof. Sangeetha G',
+      role: 'Faculty Coordinator',
+      photo: facultyImg1
+    },
+    {
+      id: 'faculty2-coord',
+      type: 'faculty', // Added type
+      name: 'Prof. Vijay Kumar MS',
+      role: 'Faculty Coordinator',
+      photo: facultyImg2
+>>>>>>> d43e06d0b640843be43ec865ec71f72a36efe5a1
     },
     {
       id: "student-coord",

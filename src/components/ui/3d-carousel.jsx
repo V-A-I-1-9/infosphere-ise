@@ -13,10 +13,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // --- Import your local images ---
 import img1 from "../../assets/gallery/corecom.webp";
+<<<<<<< HEAD
 import img4 from "../../assets/gallery/culturalcom.webp";
 import img5 from "../../assets/gallery/eventcom.webp";
 import img2 from "../../assets/gallery/sportscom.webp";
 import img3 from "../../assets/gallery/technicalcom.webp";
+=======
+import img2 from "../../assets/gallery/sportscom.webp";
+import img3 from "../../assets/gallery/technicalcom.webp";
+import img4 from "../../assets/gallery/culturalcom.webp";
+import img5 from "../../assets/gallery/eventcom.webp";
+>>>>>>> d43e06d0b640843be43ec865ec71f72a36efe5a1
 
 const defaultCards = [img1, img2, img3, img4, img5];
 
