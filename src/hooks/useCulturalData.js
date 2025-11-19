@@ -1,61 +1,87 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
+import Papa from "papaparse";
 import { useMemo } from "react";
-import { fetchCulturalData } from "../services/apiCultural";
 
-// URLs retrieved from .env file
-const eventsUrl = import.meta.env.VITE_CULTURAL_EVENTS_URL;
-const teamUrl = import.meta.env.VITE_CULTURAL_TEAM_URL;
-const achievementsUrl = import.meta.env.VITE_CULTURAL_ACHIEVEMENT_URL;
+// Import individual fetch functions (we'll create these)
+async function fetchSheetTab(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch sheet: ${response.status}`);
+  }
+  const csvText = await response.text();
+
+  return new Promise((resolve, reject) => {
+    Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (results) => resolve(results.data),
+      error: (error) => reject(error),
+    });
+  });
+}
 
 /**
- * Custom hook to fetch and process Cultural club data.
- * Uses React Query for data fetching, caching, and state management.
- * The data is memoized to prevent unnecessary re-processing.
- *
- * @returns {Object} An object containing:
- * - isLoading, isError, error: State indicators from React Query
- * - events, team, achievements: Memoized arrays of data for each category
+ * Custom hook to fetch Cultural club data with PARALLEL queries.
+ * Each data source (events, team, achievements) is fetched independently
+ * for better caching, loading states, and performance.
  */
 export function useCulturalData() {
-  const {
-    data: rawData,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["culturalData"],
-    queryFn: fetchCulturalData,
-    enabled: !!(eventsUrl && teamUrl && achievementsUrl),
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    refetchInterval: 5 * 60 * 1000, // Auto-refresh every 5 minutes
-    retry: 3,
-    retryDelay: function calculateRetryDelay(attemptIndex) {
-      return Math.min(1000 * Math.pow(2, attemptIndex), 30000);
-    },
+  const eventsUrl = import.meta.env.VITE_CULTURAL_EVENTS_URL;
+  const teamUrl = import.meta.env.VITE_CULTURAL_TEAM_URL;
+  const achievementsUrl = import.meta.env.VITE_CULTURAL_ACHIEVEMENT_URL;
+
+  // Run 3 queries in PARALLEL with useQueries
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ["culturalEvents"],
+        queryFn: () => fetchSheetTab(eventsUrl),
+        enabled: !!eventsUrl,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        gcTime: 10 * 60 * 1000, // 10 minutes (was cacheTime in v4)
+        retry: 3,
+        retryDelay: (attemptIndex) =>
+          Math.min(1000 * Math.pow(2, attemptIndex), 30000),
+      },
+      {
+        queryKey: ["culturalTeam"],
+        queryFn: () => fetchSheetTab(teamUrl),
+        enabled: !!teamUrl,
+        staleTime: 5 * 60 * 1000,
+        gcTime: 10 * 60 * 1000,
+        retry: 3,
+        retryDelay: (attemptIndex) =>
+          Math.min(1000 * Math.pow(2, attemptIndex), 30000),
+      },
+      {
+        queryKey: ["culturalAchievements"],
+        queryFn: () => fetchSheetTab(achievementsUrl),
+        enabled: !!achievementsUrl,
+        staleTime: 5 * 60 * 1000,
+        gcTime: 10 * 60 * 1000,
+        retry: 3,
+        retryDelay: (attemptIndex) =>
+          Math.min(1000 * Math.pow(2, attemptIndex), 30000),
+      },
+    ],
   });
 
-  // useMemo ensures that we only re-process the data when rawData changes.
-  // This is a crucial performance optimization.
-  const processedData = useMemo(
-    function processRawData() {
-      const defaultData = {
-        events: [],
-        team: [],
-        achievements: [],
-      };
+  // Destructure results array
+  const [eventsQuery, teamQuery, achievementsQuery] = results;
 
-      if (!rawData) {
-        return defaultData;
-      }
+  // Combined loading/error states
+  const isLoading = results.some((query) => query.isLoading);
+  const isError = results.some((query) => query.isError);
+  const error = results.find((query) => query.error)?.error || null;
 
-      return {
-        events: rawData.events || [],
-        team: rawData.team || [],
-        achievements: rawData.achievements || [],
-      };
-    },
-    [rawData]
-  );
+  // Memoize processed data
+  const processedData = useMemo(() => {
+    return {
+      events: eventsQuery.data || [],
+      team: teamQuery.data || [],
+      achievements: achievementsQuery.data || [],
+    };
+  }, [eventsQuery.data, teamQuery.data, achievementsQuery.data]);
 
   return {
     isLoading,

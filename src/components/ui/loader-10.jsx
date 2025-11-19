@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cn } from "@/lib/utils"; // Assumes a standard shadcn setup
+import * as React from "react";
 
 const GooeyLoader = React.forwardRef(
   ({ className, primaryColor, secondaryColor, borderColor, ...props }, ref) => {
@@ -7,27 +7,36 @@ const GooeyLoader = React.forwardRef(
     const style = {
       "--gooey-primary-color": primaryColor || "hsl(var(--primary))",
       "--gooey-secondary-color": secondaryColor || "hsl(var(--secondary))",
-      "--gooey-border-color": borderColor || "hsl(var(--border))"
+      "--gooey-border-color": borderColor || "hsl(var(--border))",
     };
 
     return (
       <div
         ref={ref}
-        className={cn("relative flex items-center justify-center text-sm", className)}
+        className={cn(
+          "relative flex items-center justify-center text-sm",
+          className
+        )}
         style={style}
         role="status"
         aria-label="Loading"
-        {...props}>
+        {...props}
+      >
         {/* SVG filter for the gooey effect */}
         <svg className="absolute w-0 h-0">
           <defs>
             <filter id="gooey-loader-filter">
-              <feGaussianBlur in="SourceGraphic" stdDeviation={12} result="blur" />
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation={12}
+                result="blur"
+              />
               <feColorMatrix
                 in="blur"
                 mode="matrix"
                 values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 48 -7"
-                result="goo" />
+                result="goo"
+              />
               <feComposite in="SourceGraphic" in2="goo" operator="atop" />
             </filter>
           </defs>

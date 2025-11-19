@@ -1,7 +1,6 @@
-import React from "react";
+import { Instagram, Linkedin, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Instagram, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react";
-import IseLogo from "../assets/ISE.png"; // Using your existing logo
+import InfoLogo from "../assets/InfoSphereLogo.webp"; // Using your existing logo
 
 function Footer() {
   return (
@@ -15,9 +14,11 @@ function Footer() {
         {/* Column 1: Identity */}
         <div className="flex flex-col items-center md:items-start">
           <div className="flex items-center gap-2 mb-3">
-            <img src={IseLogo} alt="ISE Dept Logo" className="w-auto h-10" />
+            <img src={InfoLogo} alt="ISE Dept Logo" className="w-auto h-10" />
             <span className="text-lg font-bold text-brand-dark">
-              Infosphere ISE
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-brand-light">
+                Infosphere
+              </span>
             </span>
           </div>
           <p className="text-sm text-center text-slate-600 md:text-left">
@@ -82,28 +83,47 @@ function Footer() {
             <li className="flex items-center gap-2">
               <Mail size={16} />
               <a
-                href="mailto:hodise@mitmysore.in"
+                href="mailto:infosphereise@gmail.com"
                 className="transition-colors hover:text-brand-dark"
               >
-                Contact us
+                infosphereise@gmail.com
               </a>
             </li>
             <li className="flex items-center gap-2">
-              <Phone size={16} />
-              <a href="tel:+91 94808 49443">Contact us</a>
-            </li>
-            <li className="flex items-center gap-2">
               <MapPin size={16} />
-              <span>MIT, Mysuru-570018</span>
+              <span>MIT Mysore, Srirangapatna - 570028</span>
             </li>
           </ul>
+        </div>
+
+        {/* Column 4: Socials */}
+        <div>
+          <h4 className="mb-3 font-semibold text-center text-slate-800 md:text-left">
+            Follow Us
+          </h4>
+          <div className="flex justify-center space-x-5 md:justify-start">
+            <a
+              href="https://www.instagram.com/__infoenix__?igsh=MW94bzB5a3d2MjFrZA=="
+              aria-label="Instagram"
+              className="transition-colors text-slate-500 hover:text-brand-dark"
+            >
+              <Instagram size={24} />
+            </a>
+            <a
+              href="https://www.linkedin.com/groups/13095143"
+              aria-label="LinkedIn"
+              className="transition-colors text-slate-500 hover:text-brand-dark"
+            >
+              <Linkedin size={24} />
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Bottom Copyright Bar */}
       <div className="py-4 border-t border-slate-300/50">
         <p className="text-xs text-center text-slate-500">
-          © 2025 Infosphere ISE Club. All rights reserved.
+          © {new Date().getFullYear()} Infosphere ISE Club. All rights reserved.
         </p>
       </div>
     </footer>
